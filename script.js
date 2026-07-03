@@ -289,7 +289,7 @@ function createParticles() {
     const container = document.querySelector('.hero-particles');
     if (!container) return;
     const emojis = ['🍔', '🍟', '🥤', '🍕', '🌭', '🧀'];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 6; i++) {
         const p = document.createElement('div');
         p.className = 'hero-particle';
         p.textContent = emojis[i % emojis.length];
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
-    setTimeout(() => renderMenu('burgers'), 400);
+    renderMenu('burgers');
     updateCartUI();
 
     // Order page
@@ -649,10 +649,8 @@ window.addEventListener('scroll', () => {
 
 // ===== LOADER =====
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        if (loader) loader.classList.add('hidden');
-    }, 1200);
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
 });
 
 // ===== FORMULAIRES =====
