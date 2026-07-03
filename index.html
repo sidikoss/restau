@@ -1,204 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Experience fine dining at its best. Premium restaurant with exquisite cuisine and elegant ambiance.">
-    <title>Éclat | Premium Fine Dining</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Heros Cafe - Le Fast-Food des Héros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">Éclat</a>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="menu.html" class="nav-link">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="reserve.html" class="nav-link">Reservations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-                     
-                
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="burger-loader"></div>
+            <div class="loader-text">HEROS CAFE</div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="logo">🦸 HEROS <span>CAFE</span></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#combo">Combos</a></li>
+            <li><a href="#avis">Avis</a></li>
+            <li><a href="#reservation">Réservation</a></li>
+            <li><a href="Menu.html" class="nav-btn">Commander</a></li>
+        </ul>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">Exquisite Culinary Excellence</h1>
-            <p class="hero-subtitle">Where every meal is a masterpiece</p>
+            <div class="hero-badge">🔥 NOUVEAU : Le Burger Titan</div>
+            <h1>DEViens LE <span>HÉROS</span> DE TON APPÉTIT</h1>
+            <p>Burgers XXL, frites croustillantes et milkshakes onctueux. Chez Heros Cafe, chaque bouchée est une victoire. Prêt pour l'aventure ?</p>
             <div class="hero-buttons">
-                <a href="menu.html" class="btn btn-primary">View Menu</a>
-                <a href="reserve.html" class="btn btn-secondary">Reserve Table</a>
+                <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Voir le Menu</a>
+                <a href="#reservation" class="btn btn-secondary"><i class="fas fa-calendar"></i> Réserver</a>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Éclat Experience</h2>
-                <p class="section-subtitle">A journey of flavors and elegance</p>
-            </div>
-            <div class="about-content">
-                 <div class="about-image">
-                    <div class="image-frame">
-                        <img src="images/WhatsApp Image 2025-09-12 at 4.00.15 AM.jpeg" alt="">
-                    </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Années d'expérience</span>
                 </div>
-                <div class="about-text">
-                    <p>At Éclat, we believe dining is an art form. Our master chefs craft each dish with precision, using only the finest ingredients sourced from around the world.</p>
-                    <p>Our elegant atmosphere, impeccable service, and innovative cuisine create an unforgettable experience for discerning guests.</p>
-                    <a href="reserve.html" class="btn btn-outline">Book Your Experience</a>
+                <div class="stat">
+                    <span class="stat-number" data-target="50">0</span>
+                    <span class="stat-label">Recettes uniques</span>
                 </div>
-               
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Dishes -->
-    <section class="featured section-padding bg-dark">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Signature Creations</h2>
-                <p class="section-subtitle">A taste of our culinary artistry</p>
-            </div>
-            <div class="dishes-grid">
-                <div class="dish-card">
-                    <div class="dish-image">
-                        <div class="image-placeholder">
-                        </div>
-                       
-                    </div>
-                    <div class="dish-info">
-                        <h3>Garlic Bread
-</h3>
-                        <p>Crispy bread topped with garlic butter and herbs.</p>
-                        <div class="dish-footer">
-                            <span class="price">$89</span>
-                            <a href="Menu.html#appetizers" class="btn-view">View Details</a>
-                        
-                        </div>
-                    </div>
-                </div>
-                <div class="dish-card">
-                    <div class="dish-images">
-                        <div class="image-placeholder"></div>
-                    </div>
-                    <div class="dish-info">
-                        <h3>Grilled Chicken with Herbs</h3>
-                        <p>Tender chicken breast seasoned with fresh herbs</p>
-                        <div class="dish-footer">
-                            <span class="price">$125</span>
-                            <a href="menu.html#mains" class="btn-view">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="dish-card">
-                    <div class="dish-imagess">
-                        <div class="image-placeholder"></div>
-                    </div>
-                    <div class="dish-info">
-                        <h3>Brownies with Icecream</h3>
-                        <p>Fudgy chocolate brownies served with a scoop of vanilla</p>
-                        <div class="dish-footer">
-                            <span class="price">$32</span>
-                            <a href="menu.html#desserts" class="btn-view">View Details</a>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="10000">0</span>
+                    <span class="stat-label">Clients satisfaits</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Connect With Us</h2>
-                <p class="section-subtitle">We'd love to hear from you</p>
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Pourquoi nous choisir</div>
+            <h2 class="section-title">L'EXCELLENCE <span>FAST-FOOD</span></h2>
+            <p class="section-desc">Nous ne faisons pas que des burgers, nous créons des expériences.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                <h3>100% Frais</h3>
+                <p>Ingrédients locaux sélectionnés chaque matin pour une qualité irréprochable.</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Location</h3>
-                            <p>123 Luxury Avenue, Prestige District</p>
-                        </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                <h3>Cuit à la Flamme</h3>
+                <p>Nos viandes sont grillées au charbon de bois pour un goût authentique.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Service Éclair</h3>
+                <p>Votre commande prête en moins de 10 minutes, garantie.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                <h3>Livraison Rapide</h3>
+                <p>Livré chaud chez vous en 30 minutes ou c'est offert.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Notre Carte</div>
+            <h2 class="section-title">LE MENU DES <span>HÉROS</span></h2>
+            <p class="section-desc">Découvrez nos créations signature, préparées avec passion.</p>
+        </div>
+        <div class="menu-tabs fade-in">
+            <button class="tab-btn active" data-category="burgers">🍔 Burgers</button>
+            <button class="tab-btn" data-category="sides">🍟 Accompagnements</button>
+            <button class="tab-btn" data-category="desserts">🍰 Desserts</button>
+            <button class="tab-btn" data-category="drinks">🥤 Boissons</button>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <!-- COMBO -->
+    <section class="combo" id="combo">
+        <div class="combo-container">
+            <div class="combo-img fade-in">
+                <div class="combo-tag">🔥 COMBO DU JOUR</div>
+                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800" alt="Combo">
+            </div>
+            <div class="combo-content fade-in">
+                <div class="section-subtitle" style="color: var(--secondary);">OFFRE SPÉCIALE</div>
+                <h2>LE PACK <span>TITAN</span></h2>
+                <p>Le combo ultime pour les vrais héros de l'appétit. Tout ce qu'il faut pour une expérience légendaire.</p>
+                <div class="combo-price">
+                    <span class="combo-old-price">24.90€</span>
+                    <span class="combo-new-price">16.90€</span>
+                </div>
+                <ul class="combo-features">
+                    <li><i class="fas fa-check-circle"></i> 1 Burger Super Hero (double steak)</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Grande frite maison</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Milkshake au choix (40cl)</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Cookie maison offert</li>
+                </ul>
+                <button class="btn btn-primary" onclick="addToCart('Pack Titan', 16.90)">
+                    <i class="fas fa-cart-plus"></i> Ajouter au panier
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+    <section class="testimonials" id="avis">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Témoignages</div>
+            <h2 class="section-title">CE QUE DISENT <span>NOS HÉROS</span></h2>
+            <p class="section-desc">La parole à nos clients fidèles.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Le meilleur burger que j'ai mangé de ma vie ! La viande est juteuse, le pain est parfait. Je recommande à 1000%."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">Marie L.</div>
+                        <div class="testimonial-role">Cliente fidèle</div>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h3>Hours</h3>
-                            <p>Monday - Saturday: 5:00 PM - 11:00 PM</p>
-                            <p>Sunday: 5:00 PM - 10:00 PM</p>
-                        </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Ambiance au top, service rapide et burgers incroyables. Le Pack Titan est une tuerie absolue !"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">T</div>
+                    <div>
+                        <div class="testimonial-name">Thomas R.</div>
+                        <div class="testimonial-role">Food blogger</div>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Reservations</h3>
-                            <p>(555) 123-ECLAT</p>
-                            <p>reservations@eclat.com</p>
-                        </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"On y va en famille tous les dimanches. Les kids adorent et les parents aussi. Rapport qualité-prix imbattable."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">S</div>
+                    <div>
+                        <div class="testimonial-name">Sophie D.</div>
+                        <div class="testimonial-role">Maman de 3 enfants</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Éclat</h3>
-                    <p>Exquisite dining experiences crafted with passion and precision.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="reserve.html">Reservations</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+    <!-- RÉSERVATION -->
+    <section class="reservation" id="reservation">
+        <div class="reservation-container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Réservation</div>
+                <h2 class="section-title">RÉSERVEZ VOTRE <span>TABLE</span></h2>
+                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h.</p>
+            </div>
+            <form class="reservation-form fade-in" onsubmit="handleReservation(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" required placeholder="Jean Dupont">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" required placeholder="06 12 34 56 78">
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Heure</label>
+                        <select required>
+                            <option value="">Choisir...</option>
+                            <option>12:00</option><option>12:30</option><option>13:00</option>
+                            <option>19:00</option><option>19:30</option><option>20:00</option>
+                            <option>20:30</option><option>21:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de personnes</label>
+                        <select required>
+                            <option value="">Choisir...</option>
+                            <option>1 personne</option><option>2 personnes</option>
+                            <option>3 personnes</option><option>4 personnes</option>
+                            <option>5+ personnes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="jean@email.com">
+                    </div>
+                    <div class="form-group full">
+                        <label>Message (optionnel)</label>
+                        <textarea rows="3" placeholder="Allergies, occasion spéciale..."></textarea>
                     </div>
                 </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-calendar-check"></i> Confirmer la réservation
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <h2>Rejoins la <span style="color: var(--secondary);">Ligue des Héros</span></h2>
+        <p>Inscris-toi et reçois -10% sur ta première commande + nos offres exclusives.</p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+            <input type="email" placeholder="Ton email..." required>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🦸 HEROS CAFE</h4>
+                <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Éclat Restaurant. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="#home">Accueil</a>
+                <a href="#menu">Menu</a>
+                <a href="#combo">Combos</a>
+                <a href="#avis">Avis</a>
+                <a href="#reservation">Réservation</a>
             </div>
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <p>Lun - Ven : 11h - 23h</p>
+                <p>Samedi : 11h - 00h</p>
+                <p>Dimanche : 12h - 22h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, Paris</p>
+                <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔</p>
         </div>
     </footer>
-   
+
+    <!-- PANIER FLOTTANT -->
+    <div class="cart-float" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- BOUTON RETOUR EN HAUT -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MODAL PANIER -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Ton Panier</h3>
+                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal" style="display:none;">
+                <span>Total :</span>
+                <span id="totalAmount">0€</span>
+            </div>
+            <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Commander
+            </button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

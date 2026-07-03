@@ -1,155 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Reserve your table at Éclat for an unforgettable dining experience.">
-    <title>Reservations | Éclat Fine Dining</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Réservation | Heros Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">Éclat</a>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="menu.html" class="nav-link">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="reserve.html" class="nav-link active">Reservations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#contact" class="nav-link">Contact</a>
-                    </li>
-                  
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="index.html#combo">Combos</a></li>
+            <li><a href="index.html#avis">Avis</a></li>
+            <li><a href="reserve.html" class="active">Réservation</a></li>
+            <li><a href="order.html" class="nav-btn">Commander</a></li>
+        </ul>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </nav>
 
-    <!-- Reservation Hero -->
+    <!-- PAGE HERO -->
     <section class="page-hero">
         <div class="container">
-            <h1>Reservations</h1>
-            <p>Secure your table for an exceptional dining experience</p>
+            <h1>Réservation</h1>
+            <p>Réservez votre table chez les héros</p>
         </div>
     </section>
 
-    <!-- Reservation Form -->
-    <section class="reservation section-padding">
-        <div class="container">
-            <div class="reservation-container">
-                <div class="reservation-info">
-                    <h2>Book Your Table</h2>
-                    <p>For parties larger than 8 guests, please contact us directly at <strong>(555) 123-ECLAT</strong> or <strong>reservations@eclat.com</strong></p>
-                    <div class="info-details">
-                        <h3>Hours of Operation</h3>
-                        <p>Monday - Saturday: 5:00 PM - 11:00 PM</p>
-                        <p>Sunday: 5:00 PM - 10:00 PM</p>
+    <!-- RÉSERVATION -->
+    <section class="reservation" style="padding: 6rem 5%;">
+        <div class="reservation-container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Réservation</div>
+                <h2 class="section-title">RÉSERVEZ VOTRE <span>TABLE</span></h2>
+                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h.</p>
+            </div>
+            <form class="reservation-form fade-in" onsubmit="handleReservation(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" required placeholder="Jean Dupont">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" required placeholder="06 12 34 56 78">
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Heure</label>
+                        <select required>
+                            <option value="">Choisir...</option>
+                            <option>12:00</option><option>12:30</option><option>13:00</option>
+                            <option>19:00</option><option>19:30</option><option>20:00</option>
+                            <option>20:30</option><option>21:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de personnes</label>
+                        <select required>
+                            <option value="">Choisir...</option>
+                            <option>1 personne</option><option>2 personnes</option>
+                            <option>3 personnes</option><option>4 personnes</option>
+                            <option>5+ personnes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="jean@email.com">
+                    </div>
+                    <div class="form-group full">
+                        <label>Message (optionnel)</label>
+                        <textarea rows="3" placeholder="Allergies, occasion spéciale..."></textarea>
                     </div>
                 </div>
-                <div class="reservation-form">
-                    <form action="https://formspree.io/f/mdklbqpl" method="POST" id="reservation-form">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" id="date" name="date" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="time">Time</label>
-                                <input type="time" id="time" name="time" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="guests">Number of Guests</label>
-                                <select id="guests" name="guests" required>
-                                    <option value="">Select...</option>
-                                    <option value="1">1 Guest</option>
-                                    <option value="2">2 Guests</option>
-                                    <option value="3">3 Guests</option>
-                                    <option value="4">4 Guests</option>
-                                    <option value="5">5 Guests</option>
-                                    <option value="6">6 Guests</option>
-                                    <option value="7">7 Guests</option>
-                                    <option value="8">8 Guests</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="occasion">Special Occasion</label>
-                                <select id="occasion" name="occasion">
-                                    <option value="">None</option>
-                                    <option value="birthday">Birthday</option>
-                                    <option value="anniversary">Anniversary</option>
-                                    <option value="business">Business Dinner</option>
-                                    <option value="celebration">Celebration</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="requests">Special Requests</label>
-                            <textarea id="requests" name="requests" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Reserve Table</button>
-                    </form>
-                </div>
-            </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-calendar-check"></i> Confirmer la réservation
+                </button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Éclat</h3>
-                    <p>Exquisite dining experiences crafted with passion and precision.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="reserve.html">Reservations</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🦸 HEROS CAFE</h4>
+                <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Éclat Restaurant. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="Menu.html">Menu</a>
+                <a href="index.html#combo">Combos</a>
+                <a href="index.html#avis">Avis</a>
+                <a href="reserve.html">Réservation</a>
             </div>
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <p>Lun - Ven : 11h - 23h</p>
+                <p>Samedi : 11h - 00h</p>
+                <p>Dimanche : 12h - 22h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, Paris</p>
+                <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔</p>
         </div>
     </footer>
 
