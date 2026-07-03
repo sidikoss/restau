@@ -60,7 +60,8 @@
                 <a href="about.html">À propos</a></li>
             <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
-            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+            <li class="theme-toggle-desktop"><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+            <li class="theme-toggle-mobile"><a href="#" onclick="event.preventDefault();toggleTheme()"><i class="fas fa-moon"></i> Mode sombre</a></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
@@ -122,11 +123,11 @@
                 <form onsubmit="handleContact(event)">
                     <div class="form-group">
                         <label>Nom complet</label>
-                        <input type="text" required placeholder="Jean Dupont">
+                        <input type="text" required placeholder="Jean Dupont" autocomplete="name" enterkeyhint="next">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" required placeholder="jean@email.com">
+                        <input type="email" required placeholder="jean@email.com" inputmode="email" autocomplete="email" enterkeyhint="next">
                     </div>
                     <div class="form-group">
                         <label>Sujet</label>
