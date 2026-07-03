@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commandez votre repas chez Heros Cafe - Livraison rapide à Paris.">
     <title>Commander | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,53 +12,41 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .order-page { background: var(--light); }
-        .order-container {
-            max-width: 800px; margin: 0 auto;
+        .order-container { max-width: 800px; margin: 0 auto; }
+        .order-summary-card, .order-total-card, .order-form-card {
+            background: var(--white); border-radius: var(--radius); padding: 30px;
+            box-shadow: var(--shadow); margin-bottom: 25px;
         }
-        .order-summary-card {
-            background: white; border-radius: 20px; padding: 30px;
-            box-shadow: var(--shadow); margin-bottom: 30px;
-        }
-        .order-summary-card h2 { font-size: 2rem; margin-bottom: 20px; color: var(--dark); }
-        .order-summary-card h2 span { color: var(--primary); }
+        .order-summary-card h2, .order-form-card h2 { font-size: 1.8rem; margin-bottom: 20px; color: var(--dark); }
+        .order-summary-card h2 span, .order-form-card h2 span { color: var(--primary); }
         .order-item {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 0; border-bottom: 1px solid #eee;
         }
-        .order-item h4 { font-size: 1rem; }
+        .order-item h4 { font-size: 1rem; color: var(--dark); }
         .order-item span { color: var(--primary); font-weight: 600; }
-        .order-total-card {
-            background: white; border-radius: 20px; padding: 30px;
-            box-shadow: var(--shadow); display: flex; justify-content: space-between;
-            align-items: center; margin-bottom: 30px;
+        .order-total-card { display: flex; justify-content: space-between; align-items: center; }
+        .order-total-card h3 { font-size: 1.5rem; color: var(--dark); }
+        .order-total-card h3 span { color: var(--primary); font-family: var(--font-display); font-size: 2.2rem; }
+        .order-form-card .form-group { margin-bottom: 20px; }
+        .order-form-card .form-group label { display: block; margin-bottom: 8px; color: var(--dark); font-weight: 500; font-size: 0.9rem; }
+        .order-form-card .form-group input, .order-form-card .form-group textarea {
+            width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0;
+            border-radius: var(--radius-sm); font-family: var(--font-primary); font-size: 1rem;
+            transition: var(--transition); background: var(--light); color: var(--dark);
         }
-        .order-total-card h3 { font-size: 1.5rem; }
-        .order-total-card h3 span { color: var(--primary); font-family: 'Bebas Neue'; font-size: 2.5rem; }
-        .order-form-card {
-            background: white; border-radius: 20px; padding: 30px;
-            box-shadow: var(--shadow);
+        .order-form-card .form-group input:focus, .order-form-card .form-group textarea:focus {
+            outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(230,57,70,0.1);
         }
-        .order-form-card h2 { font-size: 2rem; margin-bottom: 20px; color: var(--dark); }
-        .order-form-card h2 span { color: var(--primary); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block; margin-bottom: 8px; color: var(--dark);
-            font-weight: 500; font-size: 0.9rem;
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0;
-            border-radius: 10px; font-family: 'Poppins'; font-size: 1rem;
-            transition: 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--primary);
-        }
-        .empty-order { text-align: center; padding: 40px 0; color: #888; }
-        .empty-order i { font-size: 3rem; margin-bottom: 15px; color: #ccc; }
+        .empty-order { text-align: center; padding: 40px 0; color: var(--gray-dark); }
+        .empty-order i { font-size: 3rem; margin-bottom: 15px; color: #ddd; }
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
     <nav id="navbar">
         <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
@@ -67,35 +56,33 @@
             <li><a href="index.html#avis">Avis</a></li>
             <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn active">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- PAGE HERO -->
+    <div class="nav-overlay"></div>
+
     <section class="page-hero">
         <div class="container">
             <h1>Commander</h1>
-            <p>Passez votre commande et devenez un héros</p>
+            <p>Passez votre commande et devenez un héros. Livraison en 30 min ou offerte.</p>
         </div>
     </section>
 
-    <!-- ORDER -->
-    <section class="order-page" style="padding: 4rem 5%;">
+    <section class="order-page" style="padding:4rem 5%;">
         <div class="order-container">
-            <!-- Order Summary -->
-            <div class="order-summary-card">
+            <div class="order-summary-card fade-in">
                 <h2>🛒 Ton <span>Panier</span></h2>
                 <div id="orderItems"></div>
             </div>
 
-            <!-- Total -->
-            <div class="order-total-card">
-                <h3>Total :</h3>
+            <div class="order-total-card fade-in">
+                <h3>Total à payer</h3>
                 <h3><span id="orderTotal">0.00€</span></h3>
             </div>
 
-            <!-- Delivery Form -->
-            <div class="order-form-card">
+            <div class="order-form-card fade-in">
                 <h2>🚚 Infos de <span>Livraison</span></h2>
                 <form onsubmit="handleOrder(event)">
                     <div class="form-group">
@@ -112,27 +99,30 @@
                     </div>
                     <div class="form-group">
                         <label>Adresse de livraison</label>
-                        <textarea id="orderAddress" rows="3" required placeholder="12 Rue de la Faim, Paris"></textarea>
+                        <textarea id="orderAddress" rows="3" required placeholder="12 Rue de la Faim, 75010 Paris"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">
-                        <i class="fas fa-check-circle"></i> Confirmer la commande
+                        <span class="btn-text"><i class="fas fa-check-circle"></i> Confirmer la commande</span>
+                        <div class="spinner"></div>
                     </button>
                 </form>
+                <p style="text-align:center;margin-top:15px;color:var(--gray-dark);font-size:0.85rem;">
+                    <i class="fas fa-lock"></i> Paiement à la livraison (espèces, carte bancaire, Apple Pay)
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>🦸 HEROS CAFE</h4>
                 <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -142,16 +132,18 @@
                 <a href="index.html#combo">Combos</a>
                 <a href="index.html#avis">Avis</a>
                 <a href="reserve.html">Réservation</a>
+                <a href="about.html">À propos</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-col">
                 <h4>Horaires</h4>
-                <p>Lun - Ven : 11h - 23h</p>
-                <p>Samedi : 11h - 00h</p>
-                <p>Dimanche : 12h - 22h</p>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, Paris</p>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
                 <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
                 <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
             </div>
@@ -161,29 +153,9 @@
         </div>
     </footer>
 
-    <!-- Cart Float -->
-    <div class="cart-float" onclick="toggleCart()">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count" id="cartCount">0</span>
-    </div>
-
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>🛒 Ton Panier</h3>
-                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-            </div>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal" style="display:none;">
-                <span>Total :</span>
-                <span id="totalAmount">0€</span>
-            </div>
-            <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
-                <i class="fas fa-credit-card"></i> Commander
-            </button>
-        </div>
-    </div>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

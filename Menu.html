@@ -1,64 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menu complet Heros Cafe - Burgers, frites, desserts et boissons. Commandez en ligne !">
     <title>Menu | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .menu-categories {
-            display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
-            padding: 30px 0; background: var(--light); position: sticky; top: 80px; z-index: 100;
-        }
-        .category-link {
-            padding: 10px 25px; background: var(--dark); color: white; text-decoration: none;
-            border-radius: 30px; transition: 0.3s; font-size: 14px; font-weight: 500;
-        }
-        .category-link:hover, .category-link.active { background: var(--primary); }
-        .menu-page-section { padding: 4rem 0; }
-        .menu-page-section:nth-child(even) { background: white; }
-        .menu-page-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px; padding: 30px 0;
-        }
-        .menu-page-item {
-            background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: var(--shadow); transition: 0.4s; position: relative;
-        }
-        .menu-page-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
-        .menu-page-item .item-image {
-            height: 200px; overflow: hidden; position: relative;
-        }
-        .menu-page-item .item-image img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
-        }
-        .menu-page-item:hover .item-image img { transform: scale(1.1); }
-        .menu-page-item .item-badge {
-            position: absolute; top: 15px; right: 15px; background: var(--primary);
-            color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
-        }
-        .menu-page-item .item-info { padding: 20px; }
-        .menu-page-item .item-info h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .menu-page-item .item-info p { color: #666; font-size: 0.95rem; margin-bottom: 15px; }
-        .item-meta { display: flex; justify-content: space-between; align-items: center; }
-        .item-price { font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--primary); }
-        .item-actions { display: flex; gap: 10px; }
-        .btn-add, .btn-buy {
-            padding: 8px 15px; border: none; border-radius: 10px; cursor: pointer;
-            transition: 0.3s; font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif;
-        }
-        .btn-add { background: var(--dark); color: white; }
-        .btn-add:hover { background: var(--primary); }
-        .btn-buy { background: var(--primary); color: white; }
-        .btn-buy:hover { background: var(--secondary); color: var(--dark); }
-    </style>
 </head>
 <body>
-    <!-- NAVBAR -->
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
     <nav id="navbar">
         <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
@@ -68,19 +25,20 @@
             <li><a href="index.html#avis">Avis</a></li>
             <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- PAGE HERO -->
+    <div class="nav-overlay"></div>
+
     <section class="page-hero">
         <div class="container">
             <h1>Notre Menu</h1>
-            <p>Des créations héroïques préparées avec passion</p>
+            <p>Des créations héroïques préparées avec les meilleurs ingrédients</p>
         </div>
     </section>
 
-    <!-- Menu Navigation -->
     <div class="menu-categories">
         <a href="#burgers" class="category-link active">🍔 Burgers</a>
         <a href="#sides" class="category-link">🍟 Accompagnements</a>
@@ -88,110 +46,94 @@
         <a href="#drinks" class="category-link">🥤 Boissons</a>
     </div>
 
-    <!-- Burgers -->
+    <!-- BURGERS -->
     <section id="burgers" class="menu-page-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <h2 class="section-title">NOS <span>BURGERS</span></h2>
-                <p class="section-desc">L'art du burger selon Heros Cafe</p>
+                <p class="section-desc">L'art du burger selon Heros Cafe. Viande grillée au charbon de bois, pain artisanal, ingrédients frais.</p>
             </div>
             <div class="menu-page-grid">
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="Le Classic Hero">
-                        <span class="item-badge">Best-seller</span>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="Le Classic Hero" loading="lazy"><span class="item-badge">Best-seller</span></div>
                     <div class="item-info">
                         <h3>Le Classic Hero</h3>
                         <p>Steak 150g, cheddar, salade, tomate, sauce maison</p>
                         <div class="item-meta">
                             <span class="item-price">9.90€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Classic Hero', 9.90)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Classic Hero', 9.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Classic Hero', 9.90)"><i class="fas fa-plus"></i> Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Classic Hero', 9.90)" title="Acheter"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500" alt="Le Super Hero">
-                        <span class="item-badge">Épicé</span>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500" alt="Le Super Hero" loading="lazy"><span class="item-badge">Épicé</span></div>
                     <div class="item-info">
                         <h3>Le Super Hero</h3>
                         <p>Double steak, bacon, cheddar fondant, oignons caramélisés</p>
                         <div class="item-meta">
                             <span class="item-price">12.90€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Super Hero', 12.90)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Super Hero', 12.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Super Hero', 12.90)">Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Super Hero', 12.90)"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500" alt="Le Titan">
-                        <span class="item-badge">XXL</span>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500" alt="Le Titan" loading="lazy"><span class="item-badge">XXL</span></div>
                     <div class="item-info">
                         <h3>Le Titan</h3>
-                        <p>Triple steak, 3 fromages, bacon, œuf, sauce BBQ</p>
+                        <p>Triple steak, 3 fromages, bacon, œuf, sauce BBQ fumée</p>
                         <div class="item-meta">
                             <span class="item-price">14.90€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Titan', 14.90)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Titan', 14.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Titan', 14.90)">Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Titan', 14.90)"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=500" alt="Le Veggie Hero">
-                        <span class="item-badge">Végé</span>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=500" alt="Le Veggie Hero" loading="lazy"><span class="item-badge">Végé</span></div>
                     <div class="item-info">
                         <h3>Le Veggie Hero</h3>
-                        <p>Galette de légumes, avocat, roquette, sauce yaourt</p>
+                        <p>Galette de légumes, avocat, roquette, sauce yaourt menthe</p>
                         <div class="item-meta">
                             <span class="item-price">10.90€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Veggie Hero', 10.90)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Veggie Hero', 10.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Veggie Hero', 10.90)">Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Veggie Hero', 10.90)"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500" alt="Le Chicken Hero">
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500" alt="Le Chicken Hero" loading="lazy"></div>
                     <div class="item-info">
                         <h3>Le Chicken Hero</h3>
-                        <p>Poulet croustillant, coleslaw, sauce ranch</p>
+                        <p>Poulet croustillant pané, coleslaw, sauce ranch maison</p>
                         <div class="item-meta">
                             <span class="item-price">11.50€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Chicken Hero', 11.50)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Chicken Hero', 11.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Chicken Hero', 11.50)">Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Chicken Hero', 11.50)"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1579888944880-d98341245702?w=500" alt="Le Fish Hero">
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1579888944880-d98341245702?w=500" alt="Le Fish Hero" loading="lazy"></div>
                     <div class="item-info">
                         <h3>Le Fish Hero</h3>
-                        <p>Filet de cabillaud pané, tartare, salade croquante</p>
+                        <p>Filet de cabillaud pané, tartare maison, salade croquante</p>
                         <div class="item-meta">
                             <span class="item-price">11.90€</span>
                             <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Le Fish Hero', 11.90)"><i class="fas fa-plus"></i> Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Le Fish Hero', 11.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="btn-sm btn-add" onclick="addToCart('Le Fish Hero', 11.90)">Ajouter</button>
+                                <button class="btn-sm btn-cart-icon" onclick="buyNow('Le Fish Hero', 11.90)"><i class="fas fa-shopping-cart"></i></button>
                             </div>
                         </div>
                     </div>
@@ -200,221 +142,100 @@
         </div>
     </section>
 
-    <!-- Sides -->
+    <!-- SIDES -->
     <section id="sides" class="menu-page-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <h2 class="section-title">ACCOMPAGNEMENTS</h2>
-                <p class="section-desc">Le complément parfait pour vos héros</p>
+                <p class="section-desc">Le complément parfait pour vos héros. Croustillants et généreux.</p>
             </div>
             <div class="menu-page-grid">
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500" alt="Frites Maison"></div>
-                    <div class="item-info">
-                        <h3>Frites Maison</h3>
-                        <p>Double cuisson, sel de Guérande</p>
-                        <div class="item-meta">
-                            <span class="item-price">4.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Frites Maison', 4.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Frites Maison', 4.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500" alt="Frites Maison" loading="lazy"></div>
+                    <div class="item-info"><h3>Frites Maison</h3><p>Double cuisson, sel de Guérande, sauce au choix</p><div class="item-meta"><span class="item-price">4.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Frites Maison', 4.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Frites Maison', 4.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1639024471283-03518883512d?w=500" alt="Onion Rings"></div>
-                    <div class="item-info">
-                        <h3>Onion Rings</h3>
-                        <p>Beignets d'oignons croustillants, sauce BBQ</p>
-                        <div class="item-meta">
-                            <span class="item-price">5.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Onion Rings', 5.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Onion Rings', 5.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1639024471283-03518883512d?w=500" alt="Onion Rings" loading="lazy"></div>
+                    <div class="item-info"><h3>Onion Rings</h3><p>Beignets d'oignons croustillants, sauce BBQ fumée</p><div class="item-meta"><span class="item-price">5.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Onion Rings', 5.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Onion Rings', 5.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=500" alt="Nuggets"></div>
-                    <div class="item-info">
-                        <h3>Nuggets x8</h3>
-                        <p>Poulet fermier, 3 sauces au choix</p>
-                        <div class="item-meta">
-                            <span class="item-price">6.90€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Nuggets x8', 6.90)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Nuggets x8', 6.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=500" alt="Nuggets" loading="lazy"></div>
+                    <div class="item-info"><h3>Nuggets x8</h3><p>Poulet fermier pané, 3 sauces au choix</p><div class="item-meta"><span class="item-price">6.90€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Nuggets x8', 6.90)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Nuggets x8', 6.90)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500" alt="Salade César"></div>
-                    <div class="item-info">
-                        <h3>Salade César</h3>
-                        <p>Poulet grillé, parmesan, croûtons, sauce césar</p>
-                        <div class="item-meta">
-                            <span class="item-price">7.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Salade César', 7.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Salade César', 7.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500" alt="Salade César" loading="lazy"><span class="item-badge">Light</span></div>
+                    <div class="item-info"><h3>Salade César</h3><p>Poulet grillé, parmesan, croûtons, sauce césar maison</p><div class="item-meta"><span class="item-price">7.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Salade César', 7.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Salade César', 7.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Desserts -->
+    <!-- DESSERTS -->
     <section id="desserts" class="menu-page-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <h2 class="section-title">DESSERTS</h2>
-                <p class="section-desc">Une touche sucrée pour terminer en beauté</p>
+                <p class="section-desc">Une touche sucrée pour terminer en beauté. 100% faits maison.</p>
             </div>
             <div class="menu-page-grid">
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500" alt="Cookie"></div>
-                    <div class="item-info">
-                        <h3>Cookie Maison</h3>
-                        <p>Pépites de chocolat, cœur fondant</p>
-                        <div class="item-meta">
-                            <span class="item-price">3.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Cookie Maison', 3.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Cookie Maison', 3.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500" alt="Cookie" loading="lazy"></div>
+                    <div class="item-info"><h3>Cookie Maison</h3><p>Pépites de chocolat, cœur fondant, noix de pécan</p><div class="item-meta"><span class="item-price">3.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Cookie Maison', 3.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Cookie Maison', 3.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" alt="Brownie"></div>
-                    <div class="item-info">
-                        <h3>Brownie</h3>
-                        <p>Chocolat noir 70%, noix de pécan</p>
-                        <div class="item-meta">
-                            <span class="item-price">4.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Brownie', 4.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Brownie', 4.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500" alt="Brownie" loading="lazy"></div>
+                    <div class="item-info"><h3>Brownie</h3><p>Chocolat noir 70%, noix de pécan, caramel beurre salé</p><div class="item-meta"><span class="item-price">4.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Brownie', 4.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Brownie', 4.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Milkshake"></div>
-                    <div class="item-info">
-                        <h3>Milkshake</h3>
-                        <p>Vanille, chocolat, fraise ou caramel</p>
-                        <div class="item-meta">
-                            <span class="item-price">5.90€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Milkshake', 5.90)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Milkshake', 5.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500" alt="Milkshake" loading="lazy"><span class="item-badge">Populaire</span></div>
+                    <div class="item-info"><h3>Milkshake</h3><p>Vanille, chocolat, fraise ou caramel. Crème chantilly</p><div class="item-meta"><span class="item-price">5.90€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Milkshake', 5.90)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Milkshake', 5.90)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500" alt="Tiramisu"></div>
-                    <div class="item-info">
-                        <h3>Tiramisu</h3>
-                        <p>Fait maison, recette italienne</p>
-                        <div class="item-meta">
-                            <span class="item-price">5.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Tiramisu', 5.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Tiramisu', 5.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500" alt="Tiramisu" loading="lazy"></div>
+                    <div class="item-info"><h3>Tiramisu</h3><p>Fait maison, recette italienne, mascarpone et café</p><div class="item-meta"><span class="item-price">5.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Tiramisu', 5.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Tiramisu', 5.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Drinks -->
+    <!-- DRINKS -->
     <section id="drinks" class="menu-page-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in">
                 <h2 class="section-title">BOISSONS</h2>
-                <p class="section-desc">Pour accompagner votre repas</p>
+                <p class="section-desc">Pour accompagner votre repas. Fraîches et désaltérantes.</p>
             </div>
             <div class="menu-page-grid">
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500" alt="Coca-Cola"></div>
-                    <div class="item-info">
-                        <h3>Coca-Cola</h3>
-                        <p>33cl, bien frais</p>
-                        <div class="item-meta">
-                            <span class="item-price">2.90€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Coca-Cola', 2.90)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Coca-Cola', 2.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500" alt="Coca-Cola" loading="lazy"></div>
+                    <div class="item-info"><h3>Coca-Cola</h3><p>33cl, servi bien frais avec glaçons</p><div class="item-meta"><span class="item-price">2.90€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Coca-Cola', 2.90)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Coca-Cola', 2.90)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500" alt="Limonade Maison"></div>
-                    <div class="item-info">
-                        <h3>Limonade Maison</h3>
-                        <p>Citron, menthe, gingembre</p>
-                        <div class="item-meta">
-                            <span class="item-price">3.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Limonade Maison', 3.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Limonade Maison', 3.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500" alt="Limonade" loading="lazy"><span class="item-badge">Maison</span></div>
+                    <div class="item-info"><h3>Limonade Maison</h3><p>Citron frais, menthe, gingembre, eau pétillante</p><div class="item-meta"><span class="item-price">3.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Limonade Maison', 3.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Limonade Maison', 3.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500" alt="Ice Tea"></div>
-                    <div class="item-info">
-                        <h3>Ice Tea</h3>
-                        <p>Pêche ou citron, 33cl</p>
-                        <div class="item-meta">
-                            <span class="item-price">2.90€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Ice Tea', 2.90)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Ice Tea', 2.90); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500" alt="Ice Tea" loading="lazy"></div>
+                    <div class="item-info"><h3>Ice Tea</h3><p>Pêche ou citron, 33cl, fait maison</p><div class="item-meta"><span class="item-price">2.90€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Ice Tea', 2.90)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Ice Tea', 2.90)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
-                <div class="menu-page-item">
-                    <div class="item-image"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500" alt="Bière Artisanale"></div>
-                    <div class="item-info">
-                        <h3>Bière Artisanale</h3>
-                        <p>Brasserie locale, 33cl</p>
-                        <div class="item-meta">
-                            <span class="item-price">5.50€</span>
-                            <div class="item-actions">
-                                <button class="btn-add" onclick="addToCart('Bière Artisanale', 5.50)">Ajouter</button>
-                                <button class="btn-buy" onclick="addToCart('Bière Artisanale', 5.50); toggleCart();"><i class="fas fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="menu-page-item fade-in">
+                    <div class="item-image"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500" alt="Bière" loading="lazy"><span class="item-badge">18+</span></div>
+                    <div class="item-info"><h3>Bière Artisanale</h3><p>Brasserie locale, 33cl, blonde ou brune</p><div class="item-meta"><span class="item-price">5.50€</span><div class="item-actions"><button class="btn-sm btn-add" onclick="addToCart('Bière Artisanale', 5.50)">Ajouter</button><button class="btn-sm btn-cart-icon" onclick="buyNow('Bière Artisanale', 5.50)"><i class="fas fa-shopping-cart"></i></button></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>🦸 HEROS CAFE</h4>
                 <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -424,16 +245,18 @@
                 <a href="index.html#combo">Combos</a>
                 <a href="index.html#avis">Avis</a>
                 <a href="reserve.html">Réservation</a>
+                <a href="about.html">À propos</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-col">
                 <h4>Horaires</h4>
-                <p>Lun - Ven : 11h - 23h</p>
-                <p>Samedi : 11h - 00h</p>
-                <p>Dimanche : 12h - 22h</p>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, Paris</p>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
                 <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
                 <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
             </div>
@@ -443,13 +266,15 @@
         </div>
     </footer>
 
-    <!-- Cart Float -->
-    <div class="cart-float" onclick="toggleCart()">
+    <button class="cart-float" onclick="toggleCart()" aria-label="Panier">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count" id="cartCount">0</span>
-    </div>
+    </button>
 
-    <!-- Cart Modal -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
@@ -463,6 +288,9 @@
             </div>
             <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
                 <i class="fas fa-credit-card"></i> Commander
+            </button>
+            <button class="submit-btn" style="margin-top:10px;background:var(--dark);" onclick="window.location.href='order.html'">
+                <i class="fas fa-arrow-right"></i> Passer la commande complète
             </button>
         </div>
     </div>

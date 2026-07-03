@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez l'histoire d'Heros Cafe - Le Fast-Food des Héros depuis 2011 à Paris.">
+    <title>À propos | Heros Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .about-story img { border-radius: var(--radius); box-shadow: var(--shadow); }
+        .about-story h2 { font-size: 3rem; margin-bottom: 20px; }
+        .about-story h2 span { color: var(--primary); }
+        .about-story p { color: var(--gray-dark); line-height: 1.8; margin-bottom: 15px; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .value-card { text-align: center; padding: 40px 30px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
+        .value-card .value-icon { font-size: 3rem; margin-bottom: 15px; }
+        .value-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .value-card p { color: var(--gray-dark); }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .team-card { text-align: center; background: var(--white); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); }
+        .team-card .avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; }
+        .team-card h4 { font-size: 1.2rem; }
+        .team-card p { color: var(--gray-dark); font-size: 0.9rem; }
+        @media (max-width: 768px) { .about-story { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="index.html#combo">Combos</a></li>
+            <li><a href="about.html" class="active">À propos</a></li>
+            <li><a href="reserve.html">Réservation</a></li>
+            <li><a href="order.html" class="nav-btn">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+        </ul>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>À propos</h1>
+            <p>Découvrez l'histoire d'Heros Cafe, le fast-food qui réveille le héros en vous</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="about-story fade-in">
+            <div>
+                <h2>NOTRE <span>HISTOIRE</span></h2>
+                <p>Tout a commencé en 2011, dans une petite rue de Paris. Deux amis passionnés de gastronomie et de street-food décident de créer un fast-food pas comme les autres : là où chaque burger est une œuvre d'art et chaque client un héros.</p>
+                <p>Aujourd'hui, Heros Cafe c'est :</p>
+                <ul style="list-style:none;margin-top:15px;">
+                    <li style="padding:8px 0;"><i class="fas fa-check-circle" style="color:var(--primary);margin-right:10px;"></i> 15 ans d'expertise culinaire</li>
+                    <li style="padding:8px 0;"><i class="fas fa-check-circle" style="color:var(--primary);margin-right:10px;"></i> 50+ recettes signature</li>
+                    <li style="padding:8px 0;"><i class="fas fa-check-circle" style="color:var(--primary);margin-right:10px;"></i> 10 000+ héros servis chaque mois</li>
+                    <li style="padding:8px 0;"><i class="fas fa-check-circle" style="color:var(--primary);margin-right:10px;"></i> 100% ingrédients frais et locaux</li>
+                </ul>
+            </div>
+            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800" alt="Notre équipe" loading="lazy">
+        </div>
+    </section>
+
+    <section style="background:var(--white);">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Nos valeurs</div>
+            <h2 class="section-title">CE QUI NOUS <span>REND HÉROÏQUES</span></h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card fade-in">
+                <div class="value-icon">🥩</div>
+                <h3>Qualité Premium</h3>
+                <p>Viande française, légumes frais, pains artisanaux. Chaque ingrédient est sélectionné avec soin.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.1s;">
+                <div class="value-icon">♻️</div>
+                <h3>Zéro Gaspillage</h3>
+                <p>Nous nous engageons pour une cuisine responsable. Emballages recyclables et dons aux associations.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.2s;">
+                <div class="value-icon">🤝</div>
+                <h3>Esprit d'Équipe</h3>
+                <p>Notre équipe est une famille. Chaque membre est formé pour offrir le meilleur service.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.3s;">
+                <div class="value-icon">🚀</div>
+                <h3>Innovation</h3>
+                <p>Nous réinventons constamment notre menu pour surprendre nos héros avec des créations uniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Notre équipe</div>
+            <h2 class="section-title">LES HÉROS <span>DE L'OMBRE</span></h2>
+            <p class="section-desc">Derrière chaque burger se cache une équipe passionnée.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="avatar">👨‍🍳</div>
+                <h4>Marco</h4>
+                <p>Chef cuisinier</p>
+                <p style="font-size:0.8rem;margin-top:5px;">15 ans d'expérience en gastronomie</p>
+            </div>
+            <div class="team-card fade-in" style="transition-delay:0.1s;">
+                <div class="avatar">👩‍🍳</div>
+                <h4>Sophie</h4>
+                <p>Pâtissière</p>
+                <p style="font-size:0.8rem;margin-top:5px;">Ses desserts sont une légende</p>
+            </div>
+            <div class="team-card fade-in" style="transition-delay:0.2s;">
+                <div class="avatar">🧑‍💼</div>
+                <h4>Alex</h4>
+                <p>Manager</p>
+                <p style="font-size:0.8rem;margin-top:5px;">Le chef d'orchestre du service</p>
+            </div>
+            <div class="team-card fade-in" style="transition-delay:0.3s;">
+                <div class="avatar">👨‍💻</div>
+                <h4>Thomas</h4>
+                <p>Community Manager</p>
+                <p style="font-size:0.8rem;margin-top:5px;">Il fait rayonner Heros Cafe sur les réseaux</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🦸 HEROS CAFE</h4>
+                <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="Menu.html">Menu</a>
+                <a href="index.html#combo">Combos</a>
+                <a href="about.html">À propos</a>
+                <a href="reserve.html">Réservation</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
+                <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔</p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

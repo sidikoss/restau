@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Réservez votre table chez Heros Cafe - Le Fast-Food des Héros à Paris.">
     <title>Réservation | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +12,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- NAVBAR -->
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
     <nav id="navbar">
         <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
@@ -21,27 +25,28 @@
             <li><a href="index.html#avis">Avis</a></li>
             <li><a href="reserve.html" class="active">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- PAGE HERO -->
+    <div class="nav-overlay"></div>
+
     <section class="page-hero">
         <div class="container">
             <h1>Réservation</h1>
-            <p>Réservez votre table chez les héros</p>
+            <p>Réservez votre table et devenez un héros le temps d'un repas</p>
         </div>
     </section>
 
-    <!-- RÉSERVATION -->
-    <section class="reservation" style="padding: 6rem 5%;">
+    <section class="reservation" style="padding:6rem 5%;">
         <div class="reservation-container">
             <div class="section-header fade-in">
                 <div class="section-subtitle">Réservation</div>
                 <h2 class="section-title">RÉSERVEZ VOTRE <span>TABLE</span></h2>
-                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h.</p>
+                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h par email ou téléphone.</p>
             </div>
-            <form class="reservation-form fade-in" onsubmit="handleReservation(event)">
+            <form class="reservation-form fade-in" onsubmit="handleReservation(event)" novalidate>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Nom complet</label>
@@ -79,27 +84,31 @@
                     </div>
                     <div class="form-group full">
                         <label>Message (optionnel)</label>
-                        <textarea rows="3" placeholder="Allergies, occasion spéciale..."></textarea>
+                        <textarea rows="3" placeholder="Allergies alimentaires, occasion spéciale (anniversaire, demande...), préférences de table..."></textarea>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-calendar-check"></i> Confirmer la réservation
+                    <span class="btn-text"><i class="fas fa-calendar-check"></i> Confirmer la réservation</span>
+                    <div class="spinner"></div>
                 </button>
             </form>
+            <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.8);font-size:0.95rem;">
+                <p><i class="fas fa-phone"></i> Vous préférez nous appeler ? <strong>01 23 45 67 89</strong></p>
+                <p style="margin-top:5px;">Pour les groupes de plus de 8 personnes, merci de nous contacter directement.</p>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>🦸 HEROS CAFE</h4>
                 <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -109,16 +118,18 @@
                 <a href="index.html#combo">Combos</a>
                 <a href="index.html#avis">Avis</a>
                 <a href="reserve.html">Réservation</a>
+                <a href="about.html">À propos</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-col">
                 <h4>Horaires</h4>
-                <p>Lun - Ven : 11h - 23h</p>
-                <p>Samedi : 11h - 00h</p>
-                <p>Dimanche : 12h - 22h</p>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, Paris</p>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
                 <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
                 <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
             </div>
@@ -127,6 +138,10 @@
             <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔</p>
         </div>
     </footer>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
