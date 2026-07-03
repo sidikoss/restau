@@ -237,6 +237,11 @@ function toggleTheme() {
     localStorage.setItem('herosTheme', newTheme);
     const icon = document.querySelector('.theme-toggle i');
     if (icon) icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    const mobileLink = document.querySelector('.theme-toggle-mobile a');
+    if (mobileLink) {
+        const darkMode = newTheme === 'dark';
+        mobileLink.innerHTML = `<i class="fas ${darkMode ? 'fa-sun' : 'fa-moon'}"></i> ${darkMode ? 'Mode clair' : 'Mode sombre'}`;
+    }
 }
 
 function loadTheme() {
@@ -245,6 +250,11 @@ function loadTheme() {
         document.documentElement.setAttribute('data-theme', saved);
         const icon = document.querySelector('.theme-toggle i');
         if (icon) icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        const mobileLink = document.querySelector('.theme-toggle-mobile a');
+        if (mobileLink) {
+            const darkMode = saved === 'dark';
+            mobileLink.innerHTML = `<i class="fas ${darkMode ? 'fa-sun' : 'fa-moon'}"></i> ${darkMode ? 'Mode clair' : 'Mode sombre'}`;
+        }
     }
 }
 
