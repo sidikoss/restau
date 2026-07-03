@@ -504,11 +504,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Keyboard hint
-        const hint = document.createElement('div');
-        hint.className = 'kbd-hint';
-        hint.innerHTML = '<kbd>C</kbd> panier · <kbd>T</kbd> thème · <kbd>M</kbd> menu';
-        document.body.appendChild(hint);
-    }
+    const hint = document.createElement('div');
+    hint.className = 'kbd-hint';
+    hint.innerHTML = '<kbd>C</kbd> panier · <kbd>T</kbd> thème · <kbd>M</kbd> menu';
+    document.body.appendChild(hint);
 
     // Scroll animations (IntersectionObserver)
     const observer = new IntersectionObserver((entries) => {
