@@ -48,6 +48,7 @@
             <li><a href="index.html">Accueil</a></li>
             <li><a href="Menu.html">Menu</a></li>
             <li><a href="index.html#combo">Combos</a></li>
+            <li><a href="index.html#avis">Avis</a></li>
             <li><a href="about.html">À propos</a></li>
             <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
@@ -165,6 +166,7 @@
                 <a href="index.html">Accueil</a>
                 <a href="Menu.html">Menu</a>
                 <a href="index.html#combo">Combos</a>
+                <a href="index.html#avis">Avis</a>
                 <a href="about.html">À propos</a>
                 <a href="reserve.html">Réservation</a>
                 <a href="contact.html" class="active">Contact</a>
@@ -187,9 +189,34 @@
         </div>
     </footer>
 
+    <button class="cart-float" onclick="toggleCart()" aria-label="Panier">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Ton Panier</h3>
+                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal" style="display:none;">
+                <span>Total :</span>
+                <span id="totalAmount">0€</span>
+            </div>
+            <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Commander
+            </button>
+            <button class="submit-btn" style="margin-top:10px;background:var(--dark);" onclick="window.location.href='order.html'">
+                <i class="fas fa-arrow-right"></i> Passer la commande complète
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
