@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Actualités, événements et nouveautés de Heros Cafe - Le Fast-Food des Héros à Paris.">
+    <meta property="og:title" content="Actualités | Heros Cafe">
+    <meta property="og:description" content="Toute l'actu de Heros Cafe : nouveaux burgers, événements et plus encore.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=75&fm=webp">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+    <title>Actualités | Heros Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .blog-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .blog-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .blog-card .blog-image { height: 220px; overflow: hidden; position: relative; }
+        .blog-card .blog-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+        .blog-card:hover .blog-image img { transform: scale(1.1); }
+        .blog-date { position: absolute; top: 15px; left: 15px; background: var(--primary); color: white; padding: 6px 16px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; }
+        .blog-card .blog-info { padding: 25px; }
+        .blog-card .blog-info h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--dark); }
+        .blog-card .blog-info p { color: var(--gray-dark); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
+        .blog-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 600; text-decoration: none; transition: var(--transition); }
+        .blog-link:hover { color: var(--secondary); gap: 12px; }
+        @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="index.html#combo">Combos</a></li>
+            <li><a href="index.html#avis">Avis</a></li>
+            <li><a href="blog.html" class="active">Actualités</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="reserve.html">Réservation</a></li>
+            <li><a href="order.html" class="nav-btn">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+        </ul>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Actualités</h1>
+            <p>Toute l'actu de Heros Cafe</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Le blog</div>
+            <h2 class="section-title">LES DERNIÈRES <span>NOUVELLES</span></h2>
+            <p class="section-desc">Restez connecté avec la vie de Heros Cafe.</p>
+        </div>
+        <div class="blog-grid">
+
+            <article class="blog-card fade-in">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=75&fm=webp" alt="Nouveau Burger Titan" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Mars 2026</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Nouveau Burger Titan</h3>
+                    <p>Découvrez notre dernière création : le Burger Titan ! Deux steaks de bœuf, cheddar fondant, oignons caramélisés et notre sauce secrète. Une explosion de saveurs.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in" style="transition-delay:0.1s;">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=75&fm=webp" alt="Soirée Halloween au Heros Cafe" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Oct 2025</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Soirée Halloween au Heros Cafe</h3>
+                    <p>Le 31 octobre, venez déguisés déguster notre burger "Sanglant" édition limitée. Concours du meilleur costume et surprises toute la soirée.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in" style="transition-delay:0.2s;">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=75&fm=webp" alt="Notre chef primé" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Sept 2025</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Notre chef primé</h3>
+                    <p>Notre chef Marco a remporté le prix du "Meilleur Burger de France" au salon de la street-food. Une reconnaissance du travail d'équipe et de notre passion.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in" style="transition-delay:0.3s;">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=75&fm=webp" alt="Nouveaux accompagnements" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Août 2025</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Nouveaux accompagnements</h3>
+                    <p>Frites de patates douces, onion rings croustillants, coleslaw maison et nos nouvelles sauces artisanales. Le burger parfait mérite les meilleurs sides.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in" style="transition-delay:0.4s;">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&q=75&fm=webp" alt="Partenariat avec une brasserie locale" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Juil 2025</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Partenariat avec une brasserie locale</h3>
+                    <p>Nous nous associons à la Brasserie du 10e pour vous proposer des bières artisanales en édition limitée, parfaitement accordées avec notre menu.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card fade-in" style="transition-delay:0.5s;">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=400&q=75&fm=webp" alt="Heros Cafe fête ses 15 ans" loading="lazy">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> Juin 2025</span>
+                </div>
+                <div class="blog-info">
+                    <h3>Heros Cafe fête ses 15 ans</h3>
+                    <p>15 ans déjà ! Venez célébrer avec nous du 15 au 30 juin : burgers à prix spécial, cadeaux et une grande tombola pour nos héros les plus fidèles.</p>
+                    <a href="#" class="blog-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🦸 HEROS CAFE</h4>
+                <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="Menu.html">Menu</a>
+                <a href="index.html#combo">Combos</a>
+                <a href="index.html#avis">Avis</a>
+                <a href="blog.html">Actualités</a>
+                <a href="about.html">À propos</a>
+                <a href="reserve.html">Réservation</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
+                <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
+        </div>
+    </footer>
+
+    <button class="cart-float" onclick="toggleCart()" aria-label="Panier">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Ton Panier</h3>
+                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal" style="display:none;">
+                <span>Total :</span>
+                <span id="totalAmount">0€</span>
+            </div>
+            <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Commander
+            </button>
+            <button class="submit-btn" style="margin-top:10px;background:var(--dark);" onclick="window.location.href='order.html'">
+                <i class="fas fa-arrow-right"></i> Passer la commande complète
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+    </script>
+</body>
+</html>

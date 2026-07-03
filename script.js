@@ -5,30 +5,30 @@
 // ===== MENU DATA =====
 const menuData = {
     burgers: [
-        { name: "Le Classic Hero", price: 9.90, desc: "Steak 150g, cheddar, salade, tomate, sauce maison", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500", badge: "Best-seller", rating: 5 },
-        { name: "Le Super Hero", price: 12.90, desc: "Double steak, bacon, cheddar fondant, oignons caramélisés", img: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500", badge: "Épicé", rating: 5 },
-        { name: "Le Titan", price: 14.90, desc: "Triple steak, 3 fromages, bacon, œuf, sauce BBQ", img: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500", badge: "XXL", rating: 5 },
-        { name: "Le Veggie Hero", price: 10.90, desc: "Galette de légumes, avocat, roquette, sauce yaourt", img: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=500", badge: "Végé", rating: 4 },
-        { name: "Le Chicken Hero", price: 11.50, desc: "Poulet croustillant, coleslaw, sauce ranch", img: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500", badge: "", rating: 4 },
-        { name: "Le Fish Hero", price: 11.90, desc: "Filet de cabillaud pané, tartare, salade croquante", img: "https://images.unsplash.com/photo-1579888944880-d98341245702?w=500", badge: "", rating: 4 }
+        { name: "Le Classic Hero", price: 9.90, desc: "Steak 150g, cheddar, salade, tomate, sauce maison", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&fm=webp", badge: "Best-seller", rating: 5 },
+        { name: "Le Super Hero", price: 12.90, desc: "Double steak, bacon, cheddar fondant, oignons caramélisés", img: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500&fm=webp", badge: "Épicé", rating: 5 },
+        { name: "Le Titan", price: 14.90, desc: "Triple steak, 3 fromages, bacon, œuf, sauce BBQ", img: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&fm=webp", badge: "XXL", rating: 5 },
+        { name: "Le Veggie Hero", price: 10.90, desc: "Galette de légumes, avocat, roquette, sauce yaourt", img: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=500&fm=webp", badge: "Végé", rating: 4 },
+        { name: "Le Chicken Hero", price: 11.50, desc: "Poulet croustillant, coleslaw, sauce ranch", img: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500&fm=webp", badge: "", rating: 4 },
+        { name: "Le Fish Hero", price: 11.90, desc: "Filet de cabillaud pané, tartare, salade croquante", img: "https://images.unsplash.com/photo-1579888944880-d98341245702?w=500&fm=webp", badge: "", rating: 4 }
     ],
     sides: [
-        { name: "Frites Maison", price: 4.50, desc: "Double cuisson, sel de Guérande", img: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500", badge: "", rating: 5 },
-        { name: "Onion Rings", price: 5.50, desc: "Beignets d'oignons croustillants, sauce BBQ", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=500", badge: "", rating: 4 },
-        { name: "Nuggets x8", price: 6.90, desc: "Poulet fermier, 3 sauces au choix", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500", badge: "", rating: 5 },
-        { name: "Salade César", price: 7.50, desc: "Poulet grillé, parmesan, croûtons, sauce césar", img: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500", badge: "Light", rating: 4 }
+        { name: "Frites Maison", price: 4.50, desc: "Double cuisson, sel de Guérande", img: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500&fm=webp", badge: "", rating: 5 },
+        { name: "Onion Rings", price: 5.50, desc: "Beignets d'oignons croustillants, sauce BBQ", img: "https://images.unsplash.com/photo-1639024471283-03518883512d?w=500&fm=webp", badge: "", rating: 4 },
+        { name: "Nuggets x8", price: 6.90, desc: "Poulet fermier, 3 sauces au choix", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500&fm=webp", badge: "", rating: 5 },
+        { name: "Salade César", price: 7.50, desc: "Poulet grillé, parmesan, croûtons, sauce césar", img: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500&fm=webp", badge: "Light", rating: 4 }
     ],
     desserts: [
-        { name: "Cookie Maison", price: 3.50, desc: "Pépites de chocolat, cœur fondant", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500", badge: "", rating: 5 },
-        { name: "Brownie", price: 4.50, desc: "Chocolat noir 70%, noix de pécan", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500", badge: "", rating: 5 },
-        { name: "Milkshake", price: 5.90, desc: "Vanille, chocolat, fraise ou caramel", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500", badge: "Populaire", rating: 5 },
-        { name: "Tiramisu", price: 5.50, desc: "Fait maison, recette italienne", img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500", badge: "", rating: 4 }
+        { name: "Cookie Maison", price: 3.50, desc: "Pépites de chocolat, cœur fondant", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&fm=webp", badge: "", rating: 5 },
+        { name: "Brownie", price: 4.50, desc: "Chocolat noir 70%, noix de pécan", img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&fm=webp", badge: "", rating: 5 },
+        { name: "Milkshake", price: 5.90, desc: "Vanille, chocolat, fraise ou caramel", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&fm=webp", badge: "Populaire", rating: 5 },
+        { name: "Tiramisu", price: 5.50, desc: "Fait maison, recette italienne", img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&fm=webp", badge: "", rating: 4 }
     ],
     drinks: [
-        { name: "Coca-Cola", price: 2.90, desc: "33cl, bien frais", img: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500", badge: "", rating: 4 },
-        { name: "Limonade Maison", price: 3.50, desc: "Citron, menthe, gingembre", img: "https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500", badge: "Fait maison", rating: 5 },
-        { name: "Ice Tea", price: 2.90, desc: "Pêche ou citron, 33cl", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500", badge: "", rating: 4 },
-        { name: "Bière Artisanale", price: 5.50, desc: "Brasserie locale, 33cl", img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500", badge: "18+", rating: 5 }
+        { name: "Coca-Cola", price: 2.90, desc: "33cl, bien frais", img: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500&fm=webp", badge: "", rating: 4 },
+        { name: "Limonade Maison", price: 3.50, desc: "Citron, menthe, gingembre", img: "https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500&fm=webp", badge: "Fait maison", rating: 5 },
+        { name: "Ice Tea", price: 2.90, desc: "Pêche ou citron, 33cl", img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&fm=webp", badge: "", rating: 4 },
+        { name: "Bière Artisanale", price: 5.50, desc: "Brasserie locale, 33cl", img: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&fm=webp", badge: "18+", rating: 5 }
     ]
 };
 
@@ -333,18 +333,44 @@ function validateField(input) {
 }
 
 // ===== LIGHTBOX =====
+let lightboxImages = [];
+let lightboxIndex = 0;
+
 function openLightbox(imgSrc) {
     const lb = document.getElementById('lightbox');
     const img = lb.querySelector('img');
     if (img) img.src = imgSrc;
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Collect all gallery images for prev/next
+    lightboxImages = [];
+    document.querySelectorAll('.gallery-item img, .carousel-slide img').forEach((el) => {
+        const src = el.getAttribute('src') || el.src;
+        if (src && !lightboxImages.includes(src)) lightboxImages.push(src);
+    });
+    lightboxIndex = lightboxImages.indexOf(imgSrc);
+    if (lightboxIndex === -1) lightboxIndex = 0;
 }
 
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
     lb.classList.remove('active');
     document.body.style.overflow = '';
+}
+
+function prevImage() {
+    if (lightboxImages.length < 2) return;
+    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    const img = document.querySelector('#lightbox img');
+    if (img) img.src = lightboxImages[lightboxIndex];
+}
+
+function nextImage() {
+    if (lightboxImages.length < 2) return;
+    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+    const img = document.querySelector('#lightbox img');
+    if (img) img.src = lightboxImages[lightboxIndex];
 }
 
 // ===== DOM READY =====
@@ -517,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale').forEach(el => observer.observe(el));
 
     // Testimonial carousel
     const testimonialGrid = document.querySelector('.testimonials-grid');
@@ -561,6 +587,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modal && modal.classList.contains('active')) toggleCart();
             const lb = document.getElementById('lightbox');
             if (lb && lb.classList.contains('active')) closeLightbox();
+        }
+        if (e.key === 'ArrowLeft') {
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.classList.contains('active')) { e.preventDefault(); prevImage(); }
+        }
+        if (e.key === 'ArrowRight') {
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.classList.contains('active')) { e.preventDefault(); nextImage(); }
         }
         if (e.key === 'm' || e.key === 'M') { window.location.href = 'Menu.html'; }
     });
@@ -798,12 +832,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ===== ESC KEY =====
+// ===== ESC & ARROW KEYS =====
 document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
     if (e.key === 'Escape') {
         const modal = document.getElementById('cartModal');
         if (modal && modal.classList.contains('active')) toggleCart();
-        const lb = document.getElementById('lightbox');
         if (lb && lb.classList.contains('active')) closeLightbox();
+    }
+    if (e.key === 'ArrowLeft' && lb && lb.classList.contains('active')) {
+        e.preventDefault(); prevImage();
+    }
+    if (e.key === 'ArrowRight' && lb && lb.classList.contains('active')) {
+        e.preventDefault(); nextImage();
     }
 });

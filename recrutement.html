@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rejoins l'équipe Heros Cafe - Le Fast-Food des Héros recrute à Paris. Cuisinier, serveur, livreur, manager.">
+    <meta property="og:title" content="Recrutement | Heros Cafe">
+    <meta property="og:description" content="Deviens un héros parmi les héros. Découvre nos offres d'emploi à Paris.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=75&fm=webp">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+    <title>Recrutement | Heros Cafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .job-card { background: var(--white); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); border: 1px solid var(--gray-light); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .job-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+        .job-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .job-card .job-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+        .job-card .job-tags span { background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .job-card .job-tags span i { margin-right: 5px; }
+        .job-card p { color: var(--gray-dark); line-height: 1.7; margin-bottom: 15px; font-size: 0.95rem; }
+        .job-card .job-desc { min-height: 80px; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; max-width: 1000px; margin: 0 auto; }
+        .contact-recrut { text-align: center; max-width: 600px; margin: 0 auto; padding: 40px; background: var(--primary-light); border-radius: var(--radius); }
+        .contact-recrut h3 { font-size: 2rem; margin-bottom: 15px; }
+        .contact-recrut p { color: var(--gray-dark); margin-bottom: 20px; }
+        .contact-recrut .email-box { display: inline-flex; align-items: center; gap: 12px; background: var(--primary); color: #fff; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; }
+        @media (max-width: 768px) { .jobs-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div id="scrollProgress"></div>
+    <div id="toastContainer"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="index.html#combo">Combos</a></li>
+            <li><a href="index.html#avis">Avis</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="reserve.html">Réservation</a></li>
+            <li><a href="recrutement.html" class="active">Recrutement</a></li>
+            <li><a href="order.html" class="nav-btn">Commander</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+        </ul>
+        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <div class="nav-overlay"></div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Rejoins l'équipe</h1>
+            <p>Deviens un héros parmi les héros</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Nos offres</div>
+            <h2 class="section-title">REJOINS <span>L'AVENTURE</span></h2>
+            <p class="section-desc">Heros Cafe recherche des talents passionnés pour renforcer son équipe à Paris.</p>
+        </div>
+        <div class="jobs-grid">
+            <div class="job-card fade-in">
+                <h3>🍳 Cuisinier(ère)</h3>
+                <div class="job-tags">
+                    <span><i class="fas fa-clock"></i> CDI</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Paris 10e</span>
+                </div>
+                <p class="job-desc">Tu maîtrises l'art du burger et tu as la passion des produits frais ? Rejoins notre cuisine pour préparer des recettes signatures qui font la légende d'Heros Cafe.</p>
+                <button class="submit-btn" onclick="postuler('Cuisinier(ère)')"><i class="fas fa-paper-plane"></i> Postuler</button>
+            </div>
+            <div class="job-card fade-in" style="transition-delay:0.1s;">
+                <h3>🍽️ Serveur / Serveuse</h3>
+                <div class="job-tags">
+                    <span><i class="fas fa-clock"></i> CDI</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Paris 10e</span>
+                </div>
+                <p class="job-desc">Le sourire est ton arme secrète et le service client ta passion. Accueille nos héros et offre-leur une expérience inoubliable à chaque visite.</p>
+                <button class="submit-btn" onclick="postuler('Serveur / Serveuse')"><i class="fas fa-paper-plane"></i> Postuler</button>
+            </div>
+            <div class="job-card fade-in" style="transition-delay:0.2s;">
+                <h3>🛵 Livreur / Livreuse</h3>
+                <div class="job-tags">
+                    <span><i class="fas fa-clock"></i> CDD</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Paris 10e</span>
+                </div>
+                <p class="job-desc">Tu connais Paris comme ta poche et tu as le sens des responsabilités ? Deviens l'ambassadeur itinérant d'Heros Cafe auprès de nos clients.</p>
+                <button class="submit-btn" onclick="postuler('Livreur / Livreuse')"><i class="fas fa-paper-plane"></i> Postuler</button>
+            </div>
+            <div class="job-card fade-in" style="transition-delay:0.3s;">
+                <h3>👔 Manager</h3>
+                <div class="job-tags">
+                    <span><i class="fas fa-clock"></i> CDI</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Paris 10e</span>
+                </div>
+                <p class="job-desc">Leader dans l'âme et organisateur hors pair, tu supervises l'équipe, la gestion des stocks et la satisfaction client pour faire tourner le restaurant au top.</p>
+                <button class="submit-btn" onclick="postuler('Manager')"><i class="fas fa-paper-plane"></i> Postuler</button>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--white);">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Pourquoi nous rejoindre</div>
+            <h2 class="section-title">LES AVANTAGES <span>HÉROS</span></h2>
+            <p class="section-desc">Chez Heros Cafe, on prend soin de ses héros.</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="value-card fade-in">
+                <div class="value-icon">🍔</div>
+                <h3>Repas offerts</h3>
+                <p>Un repas gratuit à chaque service. Découvre tout le menu et régale-toi !</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.1s;">
+                <div class="value-icon">⏰</div>
+                <h3>Horaires flexibles</h3>
+                <p>On s'adapte à ton emploi du temps. Étudiant ou parent, trouve le rythme qui te convient.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.2s;">
+                <div class="value-icon">🎓</div>
+                <h3>Formation continue</h3>
+                <p>Pas d'expérience ? Pas de problème. On forme chaque recrue aux métiers de la restauration.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.3s;">
+                <div class="value-icon">📈</div>
+                <h3>Évolution garantie</h3>
+                <p>De commis à manager, la progression en interne est notre fierté. 70% de nos managers viennent de l'équipe.</p>
+            </div>
+            <div class="value-card fade-in" style="transition-delay:0.4s;">
+                <div class="value-icon">💸</div>
+                <h3>Réduction staff</h3>
+                <p>35% de réduction sur tous les articles pour toi et tes proches, même en dehors des horaires de travail.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Contact recrutement</div>
+            <h2 class="section-title">ENVOIE <span>TA CANDIDATURE</span></h2>
+        </div>
+        <div class="contact-recrut fade-in">
+            <h3>🚀 Prêt à relever le défi ?</h3>
+            <p>Envoie ton CV et ta lettre de motivation à notre équipe RH. On te répondra sous 48h.</p>
+            <div class="email-box">
+                <i class="fas fa-envelope"></i>
+                <span>recrutement@heroscafe.fr</span>
+            </div>
+            <p style="margin-top:20px;font-size:0.85rem;color:var(--gray-dark);">N'oublie pas de préciser le poste auquel tu postules dans l'objet de ton email.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>🦸 HEROS CAFE</h4>
+                <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="Menu.html">Menu</a>
+                <a href="index.html#combo">Combos</a>
+                <a href="index.html#avis">Avis</a>
+                <a href="about.html">À propos</a>
+                <a href="reserve.html">Réservation</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Horaires</h4>
+                <p><i class="fas fa-clock"></i> Lun - Ven : 11h - 23h</p>
+                <p><i class="fas fa-clock"></i> Samedi : 11h - 00h</p>
+                <p><i class="fas fa-clock"></i> Dimanche : 12h - 22h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 12 Rue de la Faim, 75010 Paris</p>
+                <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@heroscafe.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
+        </div>
+    </footer>
+
+    <button class="cart-float" onclick="toggleCart()" aria-label="Panier">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Ton Panier</h3>
+                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal" style="display:none;">
+                <span>Total :</span>
+                <span id="totalAmount">0€</span>
+            </div>
+            <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Commander
+            </button>
+            <button class="submit-btn" style="margin-top:10px;background:var(--dark);" onclick="window.location.href='order.html'">
+                <i class="fas fa-arrow-right"></i> Passer la commande complète
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+
+      function postuler(poste) {
+        const email = "recrutement@heroscafe.fr";
+        const subject = encodeURIComponent("Candidature - " + poste);
+        const body = encodeURIComponent("Bonjour,\n\nJe souhaite postuler au poste de " + poste + " chez Heros Cafe.\n\nCordialement.");
+        window.location.href = "mailto:" + email + "?subject=" + subject + "&body=" + body;
+      }
+    </script>
+</body>
+</html>
