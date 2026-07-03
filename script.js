@@ -254,6 +254,12 @@ function updateScrollProgress() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = (scrollTop / docHeight) * 100;
     bar.style.width = progress + '%';
+
+    const ring = document.getElementById('scrollRing');
+    if (ring) {
+        const circumference = 151;
+        ring.style.strokeDashoffset = circumference - (progress / 100) * circumference;
+    }
 }
 
 // ===== COUNTDOWN TIMER =====
@@ -391,6 +397,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Scroll progress ring
+    const scrollBtn = document.getElementById('scrollTop');
+    if (scrollBtn) {
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('viewBox', '0 0 52 52');
+        const circle = document.createElementNS(svgNS, 'circle');
+        circle.setAttribute('cx', '26');
+        circle.setAttribute('cy', '26');
+        circle.setAttribute('r', '24');
+        circle.id = 'scrollRing';
+        svg.appendChild(circle);
+        scrollBtn.prepend(svg);
+        scrollBtn.style.position = 'relative';
+    }
+
+    // Keyboard hint
+    if (!document.querySelector('.kbd-hint')) {
+        const hint = document.createElement('div');
+        hint.className = 'kbd-hint';
+        hint.innerHTML = '<kbd>C</kbd> panier · <kbd>T</kbd> thème · <kbd>M</kbd> menu';
+        document.body.appendChild(hint);
+    }
+
     // Scroll animations (IntersectionObserver)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -400,6 +430,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
+
+    // Testimonial carousel
+    const testimonialGrid = document.querySelector('.testimonials-grid');
+    if (testimonialGrid && window.innerWidth >= 769) {
+        const cards = testimonialGrid.querySelectorAll('.testimonial-card');
+        if (cards.length > 1) {
+            testimonialGrid.classList.add('testimonials-carousel');
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'testimonial-dots';
+            let current = 0;
+
+            cards.forEach((card, i) => {
+                const dot = document.createElement('button');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+            testimonialGrid.parentElement.appendChild(dotsContainer);
+
+            function goToSlide(index) {
+                current = index;
+                cards.forEach((card, i) => {
+                    card.style.transform = `translateX(-${current * 100}%)`;
+                });
+                dotsContainer.querySelectorAll('button').forEach((d, i) => {
+                    d.classList.toggle('active', i === current);
+                });
+            }
+
+            setInterval(() => goToSlide((current + 1) % cards.length), 4000);
+        }
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+        if (e.key === 'c' || e.key === 'C') toggleCart();
+        if (e.key === 't' || e.key === 'T') toggleTheme();
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('cartModal');
+            if (modal && modal.classList.contains('active')) toggleCart();
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.classList.contains('active')) closeLightbox();
+        }
+        if (e.key === 'm' || e.key === 'M') { window.location.href = 'Menu.html'; }
+    });
 
     // Animated counters
     const counters = document.querySelectorAll('.stat-number');
@@ -424,8 +500,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // Init menu
-    renderMenu('burgers');
+    // Init menu with skeleton
+    const menuGrid = document.getElementById('menuGrid');
+    if (menuGrid) {
+        menuGrid.innerHTML = Array(6).fill(`
+            <div class="menu-card skeleton">
+                <div class="menu-card-img"><div class="skeleton" style="height:220px;"></div></div>
+                <div class="menu-card-body">
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text short"></div>
+                </div>
+            </div>
+        `).join('');
+    }
+    setTimeout(() => renderMenu('burgers'), 400);
     updateCartUI();
 
     // Order page

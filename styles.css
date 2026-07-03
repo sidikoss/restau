@@ -702,6 +702,63 @@ footer::before {
 .empty-cart { text-align: center; padding: 40px 0; color: var(--gray-dark); }
 .empty-cart i { font-size: 3rem; margin-bottom: 15px; color: #ddd; }
 
+/* ===== TYPEWRITER EFFECT ===== */
+.hero h1 span { color: var(--secondary); display: block; }
+.hero .typewriter {
+    display: block; overflow: hidden;
+    white-space: nowrap; border-right: 4px solid var(--secondary);
+    width: 0; animation: typing 3s steps(25) 1s forwards, blink 0.8s step-end infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent; } }
+@media (max-width: 480px) { .hero .typewriter { white-space: normal; border: none; animation: none; width: auto; } }
+
+/* ===== TESTIMONIAL CAROUSEL ===== */
+.testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; max-width: 1200px; margin: 0 auto;
+}
+@media (min-width: 769px) {
+    .testimonials-grid.testimonials-carousel {
+        display: flex; overflow: hidden; position: relative;
+        max-width: 800px; min-height: 280px;
+    }
+    .testimonials-carousel .testimonial-card {
+        min-width: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0;
+    }
+    .testimonials-carousel .testimonial-dots {
+        display: flex; justify-content: center; gap: 10px; margin-top: 30px;
+    }
+    .testimonials-carousel .testimonial-dots button {
+        width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary);
+        background: transparent; cursor: pointer; transition: var(--transition); padding: 0;
+    }
+    .testimonials-carousel .testimonial-dots button.active { background: var(--primary); transform: scale(1.2); }
+}
+
+/* ===== SKELETON LOADING ===== */
+.skeleton { background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: var(--radius-sm); }
+[data-theme="dark"] .skeleton { background: linear-gradient(90deg, #2a2a3a 25%, #3a3a4a 50%, #2a2a3a 75%); background-size: 200% 100%; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.menu-card.skeleton .menu-card-img { height: 220px; }
+.menu-card.skeleton .menu-card-body { padding: 25px; }
+.menu-card.skeleton .skeleton-text { height: 20px; margin-bottom: 10px; }
+.menu-card.skeleton .skeleton-text.short { width: 60%; }
+
+/* ===== KEYBOARD HINT ===== */
+.kbd-hint {
+    position: fixed; bottom: 100px; left: 30px;
+    font-size: 0.75rem; color: var(--gray-dark); opacity: 0.4;
+    z-index: 1; pointer-events: none;
+}
+.kbd-hint kbd {
+    display: inline-block; background: var(--dark); color: white;
+    padding: 2px 7px; border-radius: 4px; font-size: 0.7rem;
+    margin: 0 2px; font-family: inherit;
+}
+@media (max-width: 768px) { .kbd-hint { display: none; } }
+
 /* ===== TOAST NOTIFICATIONS ===== */
 #toastContainer {
     position: fixed; top: 80px; right: 20px; z-index: 10002;
@@ -727,13 +784,19 @@ footer::before {
 .scroll-top {
     position: fixed; bottom: 100px; right: 30px;
     background: var(--dark); color: white;
-    width: 50px; height: 50px; border-radius: 50%;
+    width: 52px; height: 52px; border-radius: 50%;
     display: none; align-items: center; justify-content: center;
     cursor: pointer; z-index: 998; transition: var(--transition);
     border: none; font-size: 1.2rem;
 }
 .scroll-top.show { display: flex; }
 .scroll-top:hover { background: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(230,57,70,0.4); }
+.scroll-top svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.scroll-top svg circle {
+    fill: none; stroke: var(--secondary); stroke-width: 3;
+    stroke-dasharray: 151; stroke-dashoffset: 151;
+    transition: stroke-dashoffset 0.1s;
+}
 
 /* ===== ANIMATIONS SCROLL ===== */
 .fade-in {
