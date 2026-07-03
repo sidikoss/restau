@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Réservez votre table chez Heros Cafe - Le Fast-Food des Héros à Paris.">
-    <meta property="og:title" content="Réservation | Heros Cafe">
-    <meta property="og:description" content="Réservez votre table chez Heros Cafe à Paris.">
+    <meta name="description" content="Conditions Générales d'Utilisation Heros Cafe">
+    <meta property="og:title" content="CGU | Heros Cafe">
+    <meta property="og:description" content="Conditions Générales d'Utilisation Heros Cafe.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
-    <title>Réservation | Heros Cafe</title>
+    <title>Conditions Générales | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .legal-content { max-width: 800px; margin: 0 auto; }
+        .legal-content h2 { font-size: 2rem; margin: 40px 0 15px; color: var(--dark); }
+        .legal-content h2 span { color: var(--primary); }
+        .legal-content h3 { font-size: 1.3rem; margin: 30px 0 10px; color: var(--dark); }
+        .legal-content p { color: var(--gray-dark); line-height: 1.8; margin-bottom: 15px; }
+        .legal-content ul { list-style: disc; padding-left: 25px; margin-bottom: 15px; }
+        .legal-content ul li { color: var(--gray-dark); line-height: 1.8; padding: 3px 0; }
+    </style>
 </head>
 <body>
-
     <div id="scrollProgress"></div>
     <div id="toastContainer"></div>
-
     <nav id="navbar">
         <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
@@ -29,79 +36,60 @@
             <li><a href="Menu.html">Menu</a></li>
             <li><a href="index.html#combo">Combos</a></li>
             <li><a href="index.html#avis">Avis</a></li>
-            <li><a href="reserve.html" class="active">Réservation</a></li>
+            <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
             <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
-
     <div class="nav-overlay"></div>
 
     <section class="page-hero">
         <div class="container">
-            <h1>Réservation</h1>
-            <p>Réservez votre table et devenez un héros le temps d'un repas</p>
+            <h1>CGU</h1>
+            <p>Conditions Générales d'Utilisation</p>
         </div>
     </section>
 
-    <section class="reservation" style="padding:6rem 5%;">
-        <div class="reservation-container">
-            <div class="section-header fade-in">
-                <div class="section-subtitle">Réservation</div>
-                <h2 class="section-title">RÉSERVEZ VOTRE <span>TABLE</span></h2>
-                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h par email ou téléphone.</p>
-            </div>
-            <form class="reservation-form fade-in" onsubmit="handleReservation(event)" novalidate>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Nom complet</label>
-                        <input type="text" required placeholder="Jean Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label>Téléphone</label>
-                        <input type="tel" required placeholder="06 12 34 56 78">
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Heure</label>
-                        <select required>
-                            <option value="">Choisir...</option>
-                            <option>12:00</option><option>12:30</option><option>13:00</option>
-                            <option>19:00</option><option>19:30</option><option>20:00</option>
-                            <option>20:30</option><option>21:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nombre de personnes</label>
-                        <select required>
-                            <option value="">Choisir...</option>
-                            <option>1 personne</option><option>2 personnes</option>
-                            <option>3 personnes</option><option>4 personnes</option>
-                            <option>5+ personnes</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required placeholder="jean@email.com">
-                    </div>
-                    <div class="form-group full">
-                        <label>Message (optionnel)</label>
-                        <textarea rows="3" placeholder="Allergies alimentaires, occasion spéciale (anniversaire, demande...), préférences de table..."></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn" data-confetti>
-                    <span class="btn-text"><i class="fas fa-calendar-check"></i> Confirmer la réservation</span>
-                    <div class="spinner"></div>
-                </button>
-            </form>
-            <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.8);font-size:0.95rem;">
-                <p><i class="fas fa-phone"></i> Vous préférez nous appeler ? <strong>01 23 45 67 89</strong></p>
-                <p style="margin-top:5px;">Pour les groupes de plus de 8 personnes, merci de nous contacter directement.</p>
-            </div>
+    <section>
+        <div class="legal-content">
+            <h2><span>1. OBJET</span></h2>
+            <p>Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site internet Heros Cafe (https://siterestau.vercel.app). En utilisant ce site, vous acceptez pleinement et sans réserve les présentes conditions.</p>
+
+            <h2><span>2. SERVICES</span></h2>
+            <p>Heros Cafe propose les services suivants :</p>
+            <ul>
+                <li>Consultation du menu et des informations</li>
+                <li>Réservation de table en ligne</li>
+                <li>Commande à emporter et livraison</li>
+                <li>Inscription à la newsletter</li>
+                <li>Contact via formulaire</li>
+            </ul>
+
+            <h2><span>3. COMMANDES</span></h2>
+            <h3>3.1 Passation</h3>
+            <p>La commande est ferme et définitive après validation. Un email de confirmation est envoyé. Heros Cafe se réserve le droit d'annuler toute commande en cas d'indisponibilité des produits.</p>
+            <h3>3.2 Prix</h3>
+            <p>Les prix sont indiqués en euros TTC. La TVA est incluse au taux en vigueur. Les frais de livraison sont offerts pour toute commande supérieure à 15€.</p>
+            <h3>3.3 Délais</h3>
+            <p>Livraison gratuite sous 30 minutes max dans Paris intra-muros. Au-delà, la commande est offerte hors taxe. La préparation prend entre 10 et 15 minutes selon l'affluence.</p>
+
+            <h2><span>4. RÉSERVATIONS</span></h2>
+            <p>Les réservations sont confirmées sous 1 heure ouvrée par email. Pour les groupes de plus de 8 personnes, merci de nous contacter directement par téléphone au 01 23 45 67 89.</p>
+            <p>En cas d'annulation, merci de prévenir au moins 2 heures à l'avance. Les réservations non honorées sans annulation pourront entraîner un refus de réservation future.</p>
+
+            <h2><span>5. RESPONSABILITÉ</span></h2>
+            <p>Heros Cafe ne saurait être tenu responsable des retards de livraison indépendants de sa volonté (circulation, intempéries, grèves). Les allergies alimentaires doivent être signalées lors de la commande. Heros Cafe décline toute responsabilité en cas de réaction allergique non signalée.</p>
+
+            <h2><span>6. DROIT DE RÉTRACTATION</span></h2>
+            <p>Conformément à l'article L221-18 du Code de la consommation, le droit de rétractation ne s'applique pas aux produits alimentaires préparés à la commande, pour des raisons d'hygiène et de conservation.</p>
+            <p>En cas de problème avec votre commande, contactez-nous immédiatement au 01 23 45 67 89. Nous nous engageons à trouver une solution sous 24h.</p>
+
+            <h2><span>7. MODIFICATIONS</span></h2>
+            <p>Heros Cafe se réserve le droit de modifier les présentes CGU à tout moment. Les modifications prennent effet dès leur publication sur le site. Il vous appartient de consulter régulièrement les CGU.</p>
+
+            <h2><span>8. DROIT APPLICABLE</span></h2>
+            <p>Les présentes CGU sont régies par le droit français. Tout litige relatif à leur interprétation et/ou exécution relève des tribunaux français compétents.</p>
         </div>
     </section>
 
@@ -144,16 +132,13 @@
             <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
         </div>
     </footer>
-
     <button class="cart-float" onclick="toggleCart()" aria-label="Panier">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count" id="cartCount">0</span>
     </button>
-
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
-
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
@@ -173,7 +158,6 @@
             </button>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

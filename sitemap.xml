@@ -6,4 +6,6 @@
   <url><loc>https://siterestau.vercel.app/order.html</loc><priority>0.8</priority></url>
   <url><loc>https://siterestau.vercel.app/about.html</loc><priority>0.7</priority></url>
   <url><loc>https://siterestau.vercel.app/contact.html</loc><priority>0.7</priority></url>
+  <url><loc>https://siterestau.vercel.app/mentions-legales.html</loc><priority>0.4</priority></url>
+  <url><loc>https://siterestau.vercel.app/cgu.html</loc><priority>0.4</priority></url>
 </urlset>

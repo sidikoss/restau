@@ -22,6 +22,8 @@
     { "source": "/reservation", "destination": "/reserve.html", "permanent": true },
     { "source": "/commander", "destination": "/order.html", "permanent": true },
     { "source": "/a-propos", "destination": "/about.html", "permanent": true },
-    { "source": "/contact", "destination": "/contact.html", "permanent": true }
+    { "source": "/contact", "destination": "/contact.html", "permanent": true },
+    { "source": "/mentions-legales", "destination": "/mentions-legales.html", "permanent": true },
+    { "source": "/cgu", "destination": "/cgu.html", "permanent": true }
   ]
 }

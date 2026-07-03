@@ -65,6 +65,21 @@
                 <h3><span id="orderTotal">0.00€</span></h3>
             </div>
 
+            <div class="order-tracking-card order-form-card fade-in" style="display:none;" id="trackingCard">
+                <h2>📦 Suivi de <span>commande</span></h2>
+                <div class="order-tracking">
+                    <div class="tracking-steps">
+                        <div class="step"><div class="step-icon"><i class="fas fa-clipboard"></i></div><span class="step-label">Commande reçue</span></div>
+                        <div class="step"><div class="step-icon"><i class="fas fa-fire"></i></div><span class="step-label">En préparation</span></div>
+                        <div class="step"><div class="step-icon"><i class="fas fa-truck"></i></div><span class="step-label">En livraison</span></div>
+                        <div class="step"><div class="step-icon"><i class="fas fa-check"></i></div><span class="step-label">Livré</span></div>
+                    </div>
+                    <button class="btn btn-primary" data-track-order style="width:100%;margin-top:20px;justify-content:center;">
+                        <i class="fas fa-play"></i> Démarrer le suivi
+                    </button>
+                </div>
+            </div>
+
             <div class="order-form-card fade-in">
                 <h2>🚚 Infos de <span>Livraison</span></h2>
                 <form onsubmit="handleOrder(event)">
@@ -84,7 +99,7 @@
                         <label>Adresse de livraison</label>
                         <textarea id="orderAddress" rows="3" required placeholder="12 Rue de la Faim, 75010 Paris"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" class="submit-btn" data-confetti>
                         <span class="btn-text"><i class="fas fa-check-circle"></i> Confirmer la commande</span>
                         <div class="spinner"></div>
                     </button>
@@ -132,7 +147,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔</p>
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
         </div>
     </footer>
 

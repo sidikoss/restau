@@ -152,9 +152,11 @@ function checkout() {
     const total = getCartTotal();
     const count = getCartCount();
     showToast(`🎉 Commande de ${count} articles confirmée ! Total : ${total.toFixed(2)}€`, 'success');
+    triggerConfetti();
     cart = [];
     saveCart();
     toggleCart();
+    showConfirmation('🎉 Commande confirmée !', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros ! Ta commande est en cours de préparation 🔥');
 }
 
 function buyNow(name, price) {
@@ -413,8 +415,95 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollBtn.style.position = 'relative';
     }
 
+    // Word rotate effect
+    const wordWrapper = document.querySelector('.word-rotate-wrapper');
+    if (wordWrapper) {
+        const words = wordWrapper.querySelectorAll('.word');
+        if (words.length > 1) {
+            let idx = 0;
+            words[0].classList.add('active');
+            setInterval(() => {
+                words[idx].classList.remove('active');
+                idx = (idx + 1) % words.length;
+                words[idx].classList.add('active');
+            }, 2500);
+        }
+    }
+
+    // Gallery carousel
+    const galleryCarousel = document.querySelector('.gallery-carousel .carousel-track');
+    if (galleryCarousel && galleryCarousel.children.length > 1) {
+        const slides = galleryCarousel.children;
+        let slideIdx = 0;
+        const totalSlides = slides.length;
+
+        function goToSlide(i) {
+            slideIdx = i;
+            galleryCarousel.style.transform = `translateX(-${slideIdx * 100}%)`;
+        }
+
+        document.querySelector('.carousel-prev')?.addEventListener('click', () => {
+            goToSlide(slideIdx === 0 ? totalSlides - 1 : slideIdx - 1);
+        });
+        document.querySelector('.carousel-next')?.addEventListener('click', () => {
+            goToSlide(slideIdx === totalSlides - 1 ? 0 : slideIdx + 1);
+        });
+
+        setInterval(() => goToSlide((slideIdx + 1) % totalSlides), 5000);
+    }
+
+    // Confetti trigger
+    document.querySelectorAll('[data-confetti]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top;
+            const colors = ['#e63946', '#ffb703', '#4caf50', '#2196f3', '#9c27b0', '#ff9800'];
+            const container = document.createElement('div');
+            container.className = 'confetti-container';
+            document.body.appendChild(container);
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = (x + (Math.random() - 0.5) * 200) + 'px';
+                piece.style.top = y + 'px';
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                piece.style.animationDuration = (1 + Math.random()) + 's';
+                piece.style.animationDelay = Math.random() * 0.5 + 's';
+                container.appendChild(piece);
+            }
+            setTimeout(() => container.remove(), 3000);
+        });
+    });
+
+    // Order tracking demo
+    document.querySelectorAll('[data-track-order]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const steps = document.querySelectorAll('.tracking-steps .step');
+            if (!steps.length) return;
+            let stepIdx = 0;
+            steps.forEach(s => { s.classList.remove('done', 'active'); });
+            steps[0].classList.add('active');
+            showToast('📦 Commande en cours de préparation...', 'info');
+            const interval = setInterval(() => {
+                steps[stepIdx].classList.remove('active');
+                steps[stepIdx].classList.add('done');
+                stepIdx++;
+                if (stepIdx >= steps.length) {
+                    clearInterval(interval);
+                    showToast('🎉 Commande livrée ! Bon appétit héros !', 'success');
+                    triggerConfetti();
+                    return;
+                }
+                steps[stepIdx].classList.add('active');
+                const labels = ['Préparation en cours...', 'Cuisson terminée !', 'En cours de livraison...', 'Livré ! 🎉'];
+                showToast(`📦 ${labels[stepIdx - 1] || 'Mise à jour...'}`, 'info');
+            }, 2000);
+        });
+    });
+
     // Keyboard hint
-    if (!document.querySelector('.kbd-hint')) {
         const hint = document.createElement('div');
         hint.className = 'kbd-hint';
         hint.innerHTML = '<kbd>C</kbd> panier · <kbd>T</kbd> thème · <kbd>M</kbd> menu';
@@ -582,6 +671,8 @@ function handleReservation(e) {
     setTimeout(() => {
         btn.classList.remove('loading');
         showToast('✅ Réservation confirmée ! On t\'attend chez Heros Cafe 🦸', 'success');
+        triggerConfetti();
+        showConfirmation('✅ Réservation confirmée !', 'On t\'attend chez Heros Cafe 🦸', 'Un email de confirmation vient de t\'être envoyé. Tu peux aussi nous appeler au 01 23 45 67 89 pour toute modification.');
         e.target.reset();
     }, 1500);
 }
@@ -607,9 +698,13 @@ function handleOrder(e) {
     setTimeout(() => {
         btn.classList.remove('loading');
         showToast(`🎉 Commande confirmée ${name ? name.value : ''} ! ${count} articles - ${total.toFixed(2)}€`, 'success');
+        triggerConfetti();
+        showConfirmation('🎉 Commande confirmée !', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros ! Tu peux suivre ta commande en temps réel ci-dessous 🔥');
         cart = [];
         saveCart();
         renderOrderPage();
+        document.getElementById('trackingCard').style.display = 'block';
+        document.getElementById('trackingCard').scrollIntoView({ behavior: 'smooth' });
         e.target.reset();
     }, 1500);
 }
@@ -649,6 +744,49 @@ function handleContact(e) {
     e.preventDefault();
     showToast('✅ Message envoyé ! On te répond dans les plus brefs délais 🦸', 'success');
     e.target.reset();
+}
+
+// ===== CONFIRMATION MODAL =====
+function showConfirmation(title, subtitle, message) {
+    const existing = document.querySelector('.confirmation-modal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.className = 'confirmation-modal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:10002;padding:20px;backdrop-filter:blur(8px);';
+    modal.innerHTML = `
+        <div style="background:var(--white);border-radius:var(--radius);padding:50px 40px;max-width:450px;width:100%;text-align:center;animation:slideUp 0.4s ease;">
+            <div style="font-size:4rem;margin-bottom:15px;">🎉</div>
+            <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--dark);margin-bottom:5px;">${title}</h2>
+            <p style="font-size:1.3rem;color:var(--primary);font-weight:600;margin-bottom:15px;">${subtitle}</p>
+            <p style="color:var(--gray-dark);margin-bottom:30px;line-height:1.6;">${message}</p>
+            <button onclick="this.closest('.confirmation-modal').remove()" class="btn btn-primary" style="width:100%;justify-content:center;">
+                <i class="fas fa-check"></i> Super, merci !
+            </button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+}
+
+// ===== CONFETTI HELPER =====
+function triggerConfetti() {
+    const colors = ['#e63946', '#ffb703', '#4caf50', '#2196f3', '#9c27b0', '#ff9800'];
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+    for (let i = 0; i < 50; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = (window.innerWidth * Math.random()) + 'px';
+        piece.style.top = '-10px';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        piece.style.animationDuration = (1.5 + Math.random()) + 's';
+        piece.style.animationDelay = Math.random() * 0.8 + 's';
+        container.appendChild(piece);
+    }
+    setTimeout(() => container.remove(), 3000);
 }
 
 // ===== CLOSE MODAL ON CLICK OUTSIDE =====

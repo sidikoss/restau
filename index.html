@@ -77,7 +77,7 @@
         <div class="hero-particles"></div>
         <div class="hero-content">
             <div class="hero-badge">🔥 NOUVEAU : Le Burger Titan</div>
-            <h1>DEViens LE <span class="typewriter">HÉROS</span> DE TON APPÉTIT</h1>
+            <h1>DEViens LE HÉROS <span class="word-rotate-wrapper">DE TON APPÉTIT<span class="word active">🔥 DE TON APPÉTIT</span><span class="word">🍔 DE LA FAIM</span><span class="word">🥤 DE LA SOIF</span></span></h1>
             <p>Burgers XXL, frites croustillantes et milkshakes onctueux. Chez Heros Cafe, chaque bouchée est une victoire. Prêt pour l'aventure ?</p>
             <div class="hero-buttons">
                 <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Voir le Menu</a>
@@ -107,23 +107,23 @@
             <h2 class="section-title">L'EXCELLENCE <span>FAST-FOOD</span></h2>
             <p class="section-desc">Nous ne faisons pas que des burgers, nous créons des expériences.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card fade-in">
+        <div class="features-grid bento">
+            <div class="feature-card fade-in shine-border">
                 <div class="feature-icon"><i class="fas fa-leaf"></i></div>
                 <h3>100% Frais</h3>
                 <p>Ingrédients locaux sélectionnés chaque matin pour une qualité irréprochable.</p>
             </div>
-            <div class="feature-card fade-in">
+            <div class="feature-card fade-in shine-border">
                 <div class="feature-icon"><i class="fas fa-fire"></i></div>
                 <h3>Cuit à la Flamme</h3>
                 <p>Nos viandes sont grillées au charbon de bois pour un goût authentique et fumé.</p>
             </div>
-            <div class="feature-card fade-in" style="transition-delay:0.1s;">
+            <div class="feature-card fade-in shine-border" style="transition-delay:0.1s;">
                 <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <h3>Service Éclair</h3>
                 <p>Votre commande prête en moins de 10 minutes, garantie ou elle est offerte.</p>
             </div>
-            <div class="feature-card fade-in" style="transition-delay:0.2s;">
+            <div class="feature-card fade-in shine-border" style="transition-delay:0.2s;">
                 <div class="feature-icon"><i class="fas fa-truck"></i></div>
                 <h3>Livraison Rapide</h3>
                 <p>Livré chaud chez vous en 30 minutes max dans tout Paris. Sinon c'est offert.</p>
@@ -180,7 +180,7 @@
                     <li><i class="fas fa-check-circle"></i> 1 Milkshake au choix (vanille, chocolat ou fraise)</li>
                     <li><i class="fas fa-check-circle"></i> 1 Cookie maison cœur fondant offert</li>
                 </ul>
-                <button class="btn btn-primary" onclick="addToCart('Pack Titan', 16.90)">
+                <button class="btn btn-primary" data-confetti onclick="addToCart('Pack Titan', 16.90)">
                     <i class="fas fa-cart-plus"></i> Ajouter au panier
                 </button>
             </div>
@@ -194,13 +194,17 @@
             <h2 class="section-title">VIENS VOIR <span>NOS CRÉATIONS</span></h2>
             <p class="section-desc">Découvrez l'envers du décor et nos plats signature en images.</p>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Burger" loading="lazy"></div>
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1586816001966-79b736744398?w=400" alt="Frites" loading="lazy"></div>
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400" alt="Pizza" loading="lazy"></div>
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400" alt="Milkshake" loading="lazy"></div>
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400" alt="Dessert" loading="lazy"></div>
-            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400" alt="Restaurant" loading="lazy"></div>
+        <div class="gallery-carousel fade-in">
+            <button class="carousel-btn carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track">
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=1000" alt="Burger" loading="lazy"></div>
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1586816001966-79b736744398?w=1000" alt="Frites" loading="lazy"></div>
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1000" alt="Pizza" loading="lazy"></div>
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1000" alt="Milkshake" loading="lazy"></div>
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1000" alt="Dessert" loading="lazy"></div>
+                <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1000" alt="Restaurant" loading="lazy"></div>
+            </div>
+            <button class="carousel-btn carousel-next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
@@ -288,7 +292,7 @@
                         <textarea rows="3" placeholder="Allergies, occasion spéciale..."></textarea>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" data-confetti>
                     <span class="btn-text"><i class="fas fa-calendar-check"></i> Confirmer la réservation</span>
                     <div class="spinner"></div>
                 </button>
@@ -345,7 +349,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="#" style="display:inline;color:#555;">Mentions légales</a></p>
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html" style="display:inline;color:#555;">Mentions légales</a> | <a href="cgu.html" style="display:inline;color:#555;">CGU</a></p>
         </div>
     </footer>
 

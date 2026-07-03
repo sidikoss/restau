@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Réservez votre table chez Heros Cafe - Le Fast-Food des Héros à Paris.">
-    <meta property="og:title" content="Réservation | Heros Cafe">
-    <meta property="og:description" content="Réservez votre table chez Heros Cafe à Paris.">
+    <meta name="description" content="Mentions légales Heros Cafe - Paris">
+    <meta property="og:title" content="Mentions légales | Heros Cafe">
+    <meta property="og:description" content="Mentions légales et informations juridiques Heros Cafe.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
-    <title>Réservation | Heros Cafe</title>
+    <title>Mentions légales | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .legal-content { max-width: 800px; margin: 0 auto; }
+        .legal-content h2 { font-size: 2rem; margin: 40px 0 15px; color: var(--dark); }
+        .legal-content h2 span { color: var(--primary); }
+        .legal-content h3 { font-size: 1.3rem; margin: 30px 0 10px; color: var(--dark); }
+        .legal-content p { color: var(--gray-dark); line-height: 1.8; margin-bottom: 15px; }
+        .legal-content ul { list-style: disc; padding-left: 25px; margin-bottom: 15px; }
+        .legal-content ul li { color: var(--gray-dark); line-height: 1.8; padding: 3px 0; }
+    </style>
 </head>
 <body>
-
     <div id="scrollProgress"></div>
     <div id="toastContainer"></div>
 
@@ -29,79 +37,52 @@
             <li><a href="Menu.html">Menu</a></li>
             <li><a href="index.html#combo">Combos</a></li>
             <li><a href="index.html#avis">Avis</a></li>
-            <li><a href="reserve.html" class="active">Réservation</a></li>
+            <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
             <li><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
         </ul>
         <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
     </nav>
-
     <div class="nav-overlay"></div>
 
     <section class="page-hero">
         <div class="container">
-            <h1>Réservation</h1>
-            <p>Réservez votre table et devenez un héros le temps d'un repas</p>
+            <h1>Mentions Légales</h1>
+            <p>Informations juridiques et conditions d'utilisation</p>
         </div>
     </section>
 
-    <section class="reservation" style="padding:6rem 5%;">
-        <div class="reservation-container">
-            <div class="section-header fade-in">
-                <div class="section-subtitle">Réservation</div>
-                <h2 class="section-title">RÉSERVEZ VOTRE <span>TABLE</span></h2>
-                <p class="section-desc">Garantissez votre place chez les héros. Réponse confirmée en moins d'1h par email ou téléphone.</p>
-            </div>
-            <form class="reservation-form fade-in" onsubmit="handleReservation(event)" novalidate>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Nom complet</label>
-                        <input type="text" required placeholder="Jean Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label>Téléphone</label>
-                        <input type="tel" required placeholder="06 12 34 56 78">
-                    </div>
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Heure</label>
-                        <select required>
-                            <option value="">Choisir...</option>
-                            <option>12:00</option><option>12:30</option><option>13:00</option>
-                            <option>19:00</option><option>19:30</option><option>20:00</option>
-                            <option>20:30</option><option>21:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nombre de personnes</label>
-                        <select required>
-                            <option value="">Choisir...</option>
-                            <option>1 personne</option><option>2 personnes</option>
-                            <option>3 personnes</option><option>4 personnes</option>
-                            <option>5+ personnes</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required placeholder="jean@email.com">
-                    </div>
-                    <div class="form-group full">
-                        <label>Message (optionnel)</label>
-                        <textarea rows="3" placeholder="Allergies alimentaires, occasion spéciale (anniversaire, demande...), préférences de table..."></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn" data-confetti>
-                    <span class="btn-text"><i class="fas fa-calendar-check"></i> Confirmer la réservation</span>
-                    <div class="spinner"></div>
-                </button>
-            </form>
-            <div style="text-align:center;margin-top:30px;color:rgba(255,255,255,0.8);font-size:0.95rem;">
-                <p><i class="fas fa-phone"></i> Vous préférez nous appeler ? <strong>01 23 45 67 89</strong></p>
-                <p style="margin-top:5px;">Pour les groupes de plus de 8 personnes, merci de nous contacter directement.</p>
-            </div>
+    <section>
+        <div class="legal-content">
+            <h2><span>ÉDITEUR</span> DU SITE</h2>
+            <p><strong>Heros Cafe SAS</strong><br>
+            Société par Actions Simplifiée au capital de 50 000€<br>
+            RCS Paris : 912 345 678<br>
+            TVA Intracommunautaire : FR 12 912345678<br>
+            Siège social : 12 Rue de la Faim, 75010 Paris</p>
+            <p><strong>Directeur de la publication :</strong> Marco H., Président</p>
+            <p><strong>Contact :</strong> contact@heroscafe.fr / 01 23 45 67 89</p>
+
+            <h2><span>HÉBERGEMENT</span></h2>
+            <p>Ce site est hébergé par <strong>Vercel Inc.</strong><br>
+            340 S Lemon Ave #4133, Walnut, CA 91789, USA<br>
+            Site web : <a href="https://vercel.com" style="color:var(--primary);">vercel.com</a></p>
+
+            <h2><span>PROPRIÉTÉ</span> INTELLECTUELLE</h2>
+            <p>Tous les contenus présents sur ce site (textes, images, logos, vidéos, icônes) sont la propriété exclusive de Heros Cafe SAS ou de leurs auteurs respectifs. Toute reproduction, distribution, modification ou exploitation sans autorisation écrite préalable est strictement interdite.</p>
+            <p>Les marques et logos "Heros Cafe", "Pack Titan", "Le Classic Hero" et autres sont des marques déposées.</p>
+
+            <h2><span>DONNÉES</span> PERSONNELLES</h2>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données.</p>
+            <p>Les informations collectées via les formulaires (réservation, commande, newsletter, contact) sont utilisées uniquement dans le cadre de la gestion de votre relation avec Heros Cafe. Elles ne sont jamais vendues à des tiers.</p>
+            <p>Pour exercer vos droits, contactez : <strong>dpo@heroscafe.fr</strong></p>
+
+            <h2><span>COOKIES</span></h2>
+            <p>Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (stockage du thème et du panier en local). Aucun cookie publicitaire ou de traçage tiers n'est utilisé.</p>
+
+            <h2><span>RESPONSABILITÉ</span></h2>
+            <p>Heros Cafe s'efforce d'assurer l'exactitude des informations présentées. Toutefois, des erreurs ou omissions peuvent survenir. Nous ne saurions être tenus responsables des dommages directs ou indirects résultant de l'utilisation du site.</p>
+            <p>Les images culinaires présentées sont issues de la banque d'images Unsplash et sont utilisées à titre d'illustration. Les plats réels peuvent différer visuellement.</p>
         </div>
     </section>
 
@@ -149,11 +130,9 @@
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count" id="cartCount">0</span>
     </button>
-
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
-
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
@@ -173,7 +152,6 @@
             </button>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
