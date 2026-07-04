@@ -6,5 +6,11 @@
     </linearGradient>
   </defs>
   <rect width="192" height="192" rx="32" fill="url(#bg)"/>
-  <text x="96" y="130" text-anchor="middle" font-size="110">🍔</text>
+  <path d="M46 91c5-31 27-49 50-49s45 18 50 49H46Z" fill="#ffcf6b"/>
+  <path d="M43 104h106c5 0 9 4 9 9s-4 9-9 9H43c-5 0-9-4-9-9s4-9 9-9Z" fill="#6fbf73"/>
+  <path d="M48 126h96c5 0 9 4 9 9v4c0 6-5 11-11 11H50c-6 0-11-5-11-11v-4c0-5 4-9 9-9Z" fill="#f6b84f"/>
+  <path d="M54 86h84" stroke="#fff4c7" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+  <circle cx="73" cy="65" r="4" fill="#fff4c7"/>
+  <circle cx="96" cy="58" r="4" fill="#fff4c7"/>
+  <circle cx="120" cy="68" r="4" fill="#fff4c7"/>
 </svg>

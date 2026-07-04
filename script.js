@@ -34,6 +34,64 @@ const menuData = {
 
 // ===== PANIER AVEC QUANTITÉS =====
 let cart = JSON.parse(localStorage.getItem('herosCart')) || [];
+cart = Array.isArray(cart)
+    ? cart
+        .map(item => {
+            const qty = Number(item.qty || 1);
+            return {
+                name: String(item.name || ''),
+                price: Number(item.price),
+                qty: Number.isFinite(qty) ? Math.max(1, qty) : 1
+            };
+        })
+        .filter(item => item.name && Number.isFinite(item.price))
+    : [];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function escapeHTML(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function escapeAttr(value) {
+    return escapeHTML(value).replace(/`/g, '&#096;');
+}
+
+function ensureFieldError(input) {
+    const group = input.closest('.form-group') || input.parentElement;
+    if (!group) return null;
+
+    let error = group.querySelector('.form-error');
+    if (!error) {
+        error = document.createElement('div');
+        error.className = 'form-error';
+        error.setAttribute('role', 'alert');
+        error.setAttribute('aria-live', 'polite');
+        group.appendChild(error);
+    }
+
+    if (!input.id) {
+        const base = (input.name || input.placeholder || input.type || 'field')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '') || 'field';
+        input.id = `${base}-${Math.random().toString(36).slice(2, 8)}`;
+    }
+
+    const label = group.querySelector('label');
+    if (label && !label.getAttribute('for')) label.setAttribute('for', input.id);
+
+    const errorId = `${input.id}-error`;
+    error.id = errorId;
+    input.setAttribute('aria-describedby', errorId);
+    return error;
+}
 
 function saveCart() {
     localStorage.setItem('herosCart', JSON.stringify(cart));
@@ -56,7 +114,7 @@ function addToCart(name, price) {
         cart.push({ name, price, qty: 1 });
     }
     saveCart();
-    showToast(`🍔 ${name} ajouté au panier !`, 'success');
+    showToast(`${name} ajouté au panier.`, 'success');
     const float = document.querySelector('.cart-float');
     if (float) {
         float.style.transform = 'scale(1.2)';
@@ -73,7 +131,7 @@ function removeFromCart(index) {
     const item = cart[index];
     cart.splice(index, 1);
     saveCart();
-    showToast(`🗑️ ${item.name} retiré du panier`, 'info');
+    showToast(`${item.name} retiré du panier.`, 'info');
     renderCartItems();
     renderOrderPage();
 }
@@ -116,14 +174,14 @@ function renderCartItems() {
     container.innerHTML = cart.map((item, i) => `
         <div class="cart-item">
             <div class="cart-item-info">
-                <h4>${item.name}</h4>
+                <h4>${escapeHTML(item.name)}</h4>
                 <span>${(item.price * (item.qty || 1)).toFixed(2)}€</span>
             </div>
             <div class="cart-item-qty">
-                <button class="qty-minus" onclick="updateQty(${i}, -1)">−</button>
+                <button class="qty-minus" onclick="updateQty(${i}, -1)" aria-label="Retirer une unité de ${escapeAttr(item.name)}">−</button>
                 <span style="font-weight:600;min-width:20px;text-align:center;">${item.qty || 1}</span>
-                <button class="qty-plus" onclick="updateQty(${i}, 1)">+</button>
-                <button class="remove-item" onclick="removeFromCart(${i})"><i class="fas fa-trash"></i></button>
+                <button class="qty-plus" onclick="updateQty(${i}, 1)" aria-label="Ajouter une unité de ${escapeAttr(item.name)}">+</button>
+                <button class="remove-item" onclick="removeFromCart(${i})" aria-label="Supprimer ${escapeAttr(item.name)}"><i class="fas fa-trash" aria-hidden="true"></i></button>
             </div>
         </div>
     `).join('');
@@ -151,12 +209,12 @@ function checkout() {
     if (cart.length === 0) return;
     const total = getCartTotal();
     const count = getCartCount();
-    showToast(`🎉 Commande de ${count} articles confirmée ! Total : ${total.toFixed(2)}€`, 'success');
+    showToast(`Commande de ${count} articles confirmée. Total : ${total.toFixed(2)}€`, 'success');
     triggerConfetti();
     cart = [];
     saveCart();
     toggleCart();
-    showConfirmation('🎉 Commande confirmée !', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros ! Ta commande est en cours de préparation 🔥');
+    showConfirmation('Commande confirmée', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros. Ta commande est en cours de préparation.');
 }
 
 function buyNow(name, price) {
@@ -169,10 +227,15 @@ function showToast(message, type = 'info') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
 
-    const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+    const icons = {
+        success: 'fa-circle-check',
+        error: 'fa-circle-exclamation',
+        info: 'fa-circle-info'
+    };
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
-    toast.innerHTML = `<span class="toast-icon">${icons[type] || 'ℹ️'}</span><span>${message}</span>`;
+    toast.setAttribute('role', 'status');
+    toast.innerHTML = `<span class="toast-icon"><i class="fas ${icons[type] || icons.info}" aria-hidden="true"></i></span><span>${escapeHTML(message)}</span>`;
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -198,7 +261,7 @@ function renderMenu(category, searchTerm = '') {
     if (items.length === 0) {
         grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gray-dark);">
             <i class="fas fa-search" style="font-size:3rem;margin-bottom:15px;opacity:0.3;"></i>
-            <p>Aucun résultat pour "${searchTerm}"</p>
+            <p>Aucun résultat pour "${escapeHTML(searchTerm)}"</p>
         </div>`;
         return;
     }
@@ -206,21 +269,21 @@ function renderMenu(category, searchTerm = '') {
     grid.innerHTML = items.map(item => `
         <div class="menu-card fade-in visible">
             <div class="menu-card-img">
-                <img src="${item.img}" alt="${item.name}" loading="lazy">
-                ${item.badge ? `<span class="menu-badge">${item.badge}</span>` : ''}
+                <img src="${escapeAttr(item.img)}" alt="${escapeAttr(item.name)}" loading="lazy">
+                ${item.badge ? `<span class="menu-badge">${escapeHTML(item.badge)}</span>` : ''}
             </div>
             <div class="menu-card-body">
                 <div class="menu-card-header">
-                    <h3 class="menu-card-title">${item.name}</h3>
+                    <h3 class="menu-card-title">${escapeHTML(item.name)}</h3>
                     <span class="menu-card-price">${item.price.toFixed(2)}€</span>
                 </div>
-                <p class="menu-card-desc">${item.desc}</p>
+                <p class="menu-card-desc">${escapeHTML(item.desc)}</p>
                 <div class="menu-card-footer">
                     <div class="menu-rating">
                         ${'<i class="fas fa-star"></i>'.repeat(item.rating)}${'<i class="far fa-star"></i>'.repeat(5 - item.rating)}
                     </div>
-                    <button class="add-cart-btn" onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price})" title="Ajouter au panier">
-                        <i class="fas fa-plus"></i>
+                    <button class="add-cart-btn" onclick="addToCart('${item.name.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}', ${item.price})" title="Ajouter au panier" aria-label="Ajouter ${escapeAttr(item.name)} au panier">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -235,12 +298,17 @@ function toggleTheme() {
     const newTheme = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('herosTheme', newTheme);
-    const icon = document.querySelector('.theme-toggle i');
-    if (icon) icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    document.querySelectorAll('.theme-toggle').forEach(button => {
+        const icon = button.querySelector('i');
+        if (icon) icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        button.setAttribute('aria-label', newTheme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre');
+        button.setAttribute('title', newTheme === 'dark' ? 'Mode clair' : 'Mode sombre');
+    });
     const mobileLink = document.querySelector('.theme-toggle-mobile a');
     if (mobileLink) {
         const darkMode = newTheme === 'dark';
         mobileLink.innerHTML = `<i class="fas ${darkMode ? 'fa-sun' : 'fa-moon'}"></i> ${darkMode ? 'Mode clair' : 'Mode sombre'}`;
+        mobileLink.setAttribute('aria-label', darkMode ? 'Activer le mode clair' : 'Activer le mode sombre');
     }
 }
 
@@ -248,13 +316,22 @@ function loadTheme() {
     const saved = localStorage.getItem('herosTheme');
     if (saved) {
         document.documentElement.setAttribute('data-theme', saved);
-        const icon = document.querySelector('.theme-toggle i');
-        if (icon) icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        document.querySelectorAll('.theme-toggle').forEach(button => {
+            const icon = button.querySelector('i');
+            if (icon) icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            button.setAttribute('aria-label', saved === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre');
+            button.setAttribute('title', saved === 'dark' ? 'Mode clair' : 'Mode sombre');
+        });
         const mobileLink = document.querySelector('.theme-toggle-mobile a');
         if (mobileLink) {
             const darkMode = saved === 'dark';
             mobileLink.innerHTML = `<i class="fas ${darkMode ? 'fa-sun' : 'fa-moon'}"></i> ${darkMode ? 'Mode clair' : 'Mode sombre'}`;
+            mobileLink.setAttribute('aria-label', darkMode ? 'Activer le mode clair' : 'Activer le mode sombre');
         }
+    } else {
+        document.querySelectorAll('.theme-toggle').forEach(button => {
+            button.setAttribute('aria-label', 'Activer le mode sombre');
+        });
     }
 }
 
@@ -264,6 +341,10 @@ function updateScrollProgress() {
     if (!bar) return;
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) {
+        bar.style.width = '0%';
+        return;
+    }
     const progress = (scrollTop / docHeight) * 100;
     bar.style.width = progress + '%';
 
@@ -297,48 +378,41 @@ function startCountdown() {
 // ===== PARTICLES =====
 function createParticles() {
     const container = document.querySelector('.hero-particles');
-    if (!container) return;
-    const emojis = ['🍔', '🍟', '🥤', '🍕', '🌭', '🧀'];
-    for (let i = 0; i < 6; i++) {
-        const p = document.createElement('div');
-        p.className = 'hero-particle';
-        p.textContent = emojis[i % emojis.length];
-        p.style.left = Math.random() * 100 + '%';
-        p.style.animationDuration = (15 + Math.random() * 20) + 's';
-        p.style.animationDelay = (Math.random() * 10) + 's';
-        p.style.fontSize = (1 + Math.random() * 2) + 'rem';
-        container.appendChild(p);
-    }
+    if (container) container.innerHTML = '';
 }
 
 // ===== FORM VALIDATION =====
 function validateField(input) {
-    const error = input.parentElement.querySelector('.form-error');
+    const error = ensureFieldError(input);
     if (!error) return true;
 
     if (input.hasAttribute('required') && !input.value.trim()) {
         error.textContent = 'Ce champ est requis';
         error.classList.add('show');
         input.classList.add('error');
+        input.setAttribute('aria-invalid', 'true');
         return false;
     }
 
     if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-        error.textContent = 'Email invalide';
+        error.textContent = 'Adresse email invalide';
         error.classList.add('show');
         input.classList.add('error');
+        input.setAttribute('aria-invalid', 'true');
         return false;
     }
 
     if (input.type === 'tel' && input.value && !/^[0-9\s\+]{10,}$/.test(input.value)) {
-        error.textContent = 'Numéro invalide';
+        error.textContent = 'Numéro de téléphone invalide';
         error.classList.add('show');
         input.classList.add('error');
+        input.setAttribute('aria-invalid', 'true');
         return false;
     }
 
     error.classList.remove('show');
     input.classList.remove('error');
+    input.setAttribute('aria-invalid', 'false');
     return true;
 }
 
@@ -348,6 +422,7 @@ let lightboxIndex = 0;
 
 function openLightbox(imgSrc) {
     const lb = document.getElementById('lightbox');
+    if (!lb) return;
     const img = lb.querySelector('img');
     if (img) img.src = imgSrc;
     lb.classList.add('active');
@@ -365,6 +440,7 @@ function openLightbox(imgSrc) {
 
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
+    if (!lb) return;
     lb.classList.remove('active');
     document.body.style.overflow = '';
 }
@@ -386,6 +462,11 @@ function nextImage() {
 // ===== DOM READY =====
 document.addEventListener('DOMContentLoaded', () => {
     loadTheme();
+    const toastContainer = document.getElementById('toastContainer');
+    if (toastContainer) {
+        toastContainer.setAttribute('aria-live', 'polite');
+        toastContainer.setAttribute('aria-atomic', 'true');
+    }
 
     // Burger menu
     const burger = document.getElementById('burger');
@@ -393,20 +474,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const navOverlay = document.querySelector('.nav-overlay');
 
     if (burger && navLinks) {
+        burger.setAttribute('role', 'button');
+        burger.setAttribute('tabindex', burger.getAttribute('tabindex') || '0');
+        burger.setAttribute('aria-controls', 'navLinks');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Ouvrir le menu');
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            if (navOverlay) navOverlay.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.setAttribute('aria-label', 'Ouvrir le menu');
+        }
+
+        function toggleMenu() {
+            const isOpen = navLinks.classList.toggle('active');
+            if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+            burger.setAttribute('aria-expanded', String(isOpen));
+            burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+        }
+
         burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            if (navOverlay) navOverlay.classList.toggle('active');
+            toggleMenu();
+        });
+        burger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
         if (navOverlay) {
             navOverlay.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                navOverlay.classList.remove('active');
+                closeMenu();
             });
         }
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                if (navOverlay) navOverlay.classList.remove('active');
+                closeMenu();
             });
         });
     }
@@ -491,6 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Confetti trigger
     document.querySelectorAll('[data-confetti]').forEach(btn => {
         btn.addEventListener('click', (e) => {
+            if (prefersReducedMotion.matches) return;
             const rect = btn.getBoundingClientRect();
             const x = rect.left + rect.width / 2;
             const y = rect.top;
@@ -521,29 +626,23 @@ document.addEventListener('DOMContentLoaded', () => {
             let stepIdx = 0;
             steps.forEach(s => { s.classList.remove('done', 'active'); });
             steps[0].classList.add('active');
-            showToast('📦 Commande en cours de préparation...', 'info');
+            showToast('Commande en cours de préparation...', 'info');
             const interval = setInterval(() => {
                 steps[stepIdx].classList.remove('active');
                 steps[stepIdx].classList.add('done');
                 stepIdx++;
                 if (stepIdx >= steps.length) {
                     clearInterval(interval);
-                    showToast('🎉 Commande livrée ! Bon appétit héros !', 'success');
+                    showToast('Commande livrée. Bon appétit héros !', 'success');
                     triggerConfetti();
                     return;
                 }
                 steps[stepIdx].classList.add('active');
-                const labels = ['Préparation en cours...', 'Cuisson terminée !', 'En cours de livraison...', 'Livré ! 🎉'];
-                showToast(`📦 ${labels[stepIdx - 1] || 'Mise à jour...'}`, 'info');
+                const labels = ['Préparation en cours...', 'Cuisson terminée !', 'En cours de livraison...', 'Livré !'];
+                showToast(labels[stepIdx - 1] || 'Mise à jour...', 'info');
             }, 2000);
         });
     });
-
-    // Keyboard hint
-    const hint = document.createElement('div');
-    hint.className = 'kbd-hint';
-    hint.innerHTML = '<kbd>C</kbd> panier · <kbd>T</kbd> thème · <kbd>M</kbd> menu';
-    document.body.appendChild(hint);
 
     // Scroll animations (IntersectionObserver)
     const observer = new IntersectionObserver((entries) => {
@@ -567,6 +666,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cards.forEach((card, i) => {
                 const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Afficher l'avis ${i + 1}`);
                 if (i === 0) dot.classList.add('active');
                 dot.addEventListener('click', () => goToSlide(i));
                 dotsContainer.appendChild(dot);
@@ -586,28 +687,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(() => goToSlide((current + 1) % cards.length), 4000);
         }
     }
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
-        if (e.key === 'c' || e.key === 'C') toggleCart();
-        if (e.key === 't' || e.key === 'T') toggleTheme();
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('cartModal');
-            if (modal && modal.classList.contains('active')) toggleCart();
-            const lb = document.getElementById('lightbox');
-            if (lb && lb.classList.contains('active')) closeLightbox();
-        }
-        if (e.key === 'ArrowLeft') {
-            const lb = document.getElementById('lightbox');
-            if (lb && lb.classList.contains('active')) { e.preventDefault(); prevImage(); }
-        }
-        if (e.key === 'ArrowRight') {
-            const lb = document.getElementById('lightbox');
-            if (lb && lb.classList.contains('active')) { e.preventDefault(); nextImage(); }
-        }
-        if (e.key === 'm' || e.key === 'M') { window.location.href = 'Menu.html'; }
-    });
 
     // Animated counters
     const counters = document.querySelectorAll('.stat-number');
@@ -658,12 +737,12 @@ document.addEventListener('DOMContentLoaded', () => {
     createParticles();
 
     // Form validation
-    document.querySelectorAll('.reservation-form input, .reservation-form select, .reservation-form textarea').forEach(input => {
-        const error = document.createElement('div');
-        error.className = 'form-error';
-        input.parentElement.appendChild(error);
+    document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
+        ensureFieldError(input);
         input.addEventListener('blur', () => validateField(input));
-        input.addEventListener('input', () => validateField(input));
+        input.addEventListener('input', () => {
+            if (input.classList.contains('error')) validateField(input);
+        });
     });
 
     // Gallery lightbox
@@ -704,48 +783,62 @@ function handleReservation(e) {
         if (!validateField(input)) valid = false;
     });
     if (!valid) {
-        showToast('❌ Merci de corriger les champs en rouge', 'error');
+        showToast('Merci de corriger les champs indiqués.', 'error');
+        const firstInvalid = e.target.querySelector('.error');
+        if (firstInvalid) firstInvalid.focus();
         return;
     }
     const btn = e.target.querySelector('.submit-btn');
     btn.classList.add('loading');
     setTimeout(() => {
         btn.classList.remove('loading');
-        showToast('✅ Réservation confirmée ! On t\'attend chez Heros Cafe 🦸', 'success');
+        showToast('Réservation confirmée. On t\'attend chez Heros Cafe.', 'success');
         triggerConfetti();
-        showConfirmation('✅ Réservation confirmée !', 'On t\'attend chez Heros Cafe 🦸', 'Un email de confirmation vient de t\'être envoyé. Tu peux aussi nous appeler au 01 23 45 67 89 pour toute modification.');
+        showConfirmation('Réservation confirmée', 'On t\'attend chez Heros Cafe', 'Un email de confirmation vient de t\'être envoyé. Tu peux aussi nous appeler au 01 23 45 67 89 pour toute modification.');
         e.target.reset();
     }, 1500);
 }
 
 function handleNewsletter(e) {
     e.preventDefault();
-    showToast('🎉 Bienvenue dans la Ligue des Héros ! Code -10% : HEROS10', 'success');
+    showToast('Bienvenue dans la Ligue des Héros. Code -10% : HEROS10', 'success');
     e.target.reset();
 }
 
 function handleOrder(e) {
     e.preventDefault();
     if (cart.length === 0) {
-        showToast('❌ Ton panier est vide ! Ajoute des articles.', 'error');
+        showToast('Ton panier est vide. Ajoute des articles avant de commander.', 'error');
+        return;
+    }
+    let valid = true;
+    e.target.querySelectorAll('input, select, textarea').forEach(input => {
+        if (!validateField(input)) valid = false;
+    });
+    if (!valid) {
+        showToast('Merci de corriger les informations de livraison.', 'error');
+        const firstInvalid = e.target.querySelector('.error');
+        if (firstInvalid) firstInvalid.focus();
         return;
     }
     const name = document.getElementById('orderName');
-    if (name && !validateField(name)) return;
     const total = getCartTotal();
     const count = getCartCount();
     const btn = e.target.querySelector('.submit-btn');
     btn.classList.add('loading');
     setTimeout(() => {
         btn.classList.remove('loading');
-        showToast(`🎉 Commande confirmée ${name ? name.value : ''} ! ${count} articles - ${total.toFixed(2)}€`, 'success');
+        showToast(`Commande confirmée ${name ? name.value : ''}. ${count} articles - ${total.toFixed(2)}€`, 'success');
         triggerConfetti();
-        showConfirmation('🎉 Commande confirmée !', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros ! Tu peux suivre ta commande en temps réel ci-dessous 🔥');
+        showConfirmation('Commande confirmée', `${count} articles · ${total.toFixed(2)}€`, 'Prépare-toi, héros. Tu peux suivre ta commande en temps réel ci-dessous.');
         cart = [];
         saveCart();
         renderOrderPage();
-        document.getElementById('trackingCard').style.display = 'block';
-        document.getElementById('trackingCard').scrollIntoView({ behavior: 'smooth' });
+        const trackingCard = document.getElementById('trackingCard');
+        if (trackingCard) {
+            trackingCard.style.display = 'block';
+            trackingCard.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
+        }
         e.target.reset();
     }, 1500);
 }
@@ -765,12 +858,12 @@ function renderOrderPage() {
     container.innerHTML = cart.map((item, i) => `
         <div class="order-item">
             <div>
-                <h4>${item.name} <span style="color:var(--gray-dark);font-weight:400;">× ${item.qty || 1}</span></h4>
+                <h4>${escapeHTML(item.name)} <span style="color:var(--gray-dark);font-weight:400;">× ${item.qty || 1}</span></h4>
             </div>
             <div style="display:flex;align-items:center;gap:10px;">
                 <span style="color:var(--primary);font-weight:600;">${(item.price * (item.qty || 1)).toFixed(2)}€</span>
-                <button onclick="removeFromCart(${i}); renderOrderPage();" style="background:var(--primary);color:white;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;">
-                    <i class="fas fa-trash" style="font-size:0.8rem;"></i>
+                <button onclick="removeFromCart(${i}); renderOrderPage();" aria-label="Supprimer ${escapeAttr(item.name)}" style="background:var(--primary);color:white;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;">
+                    <i class="fas fa-trash" style="font-size:0.8rem;" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -783,7 +876,17 @@ function renderOrderPage() {
 // ===== CONTACT FORM =====
 function handleContact(e) {
     e.preventDefault();
-    showToast('✅ Message envoyé ! On te répond dans les plus brefs délais 🦸', 'success');
+    let valid = true;
+    e.target.querySelectorAll('input, select, textarea').forEach(input => {
+        if (!validateField(input)) valid = false;
+    });
+    if (!valid) {
+        showToast('Merci de corriger les champs indiqués.', 'error');
+        const firstInvalid = e.target.querySelector('.error');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+    }
+    showToast('Message envoyé. On te répond dans les plus brefs délais.', 'success');
     e.target.reset();
 }
 
@@ -794,13 +897,16 @@ function showConfirmation(title, subtitle, message) {
 
     const modal = document.createElement('div');
     modal.className = 'confirmation-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'confirmationTitle');
     modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:10002;padding:20px;backdrop-filter:blur(8px);';
     modal.innerHTML = `
         <div style="background:var(--white);border-radius:var(--radius);padding:50px 40px;max-width:450px;width:100%;text-align:center;animation:slideUp 0.4s ease;">
-            <div style="font-size:4rem;margin-bottom:15px;">🎉</div>
-            <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--dark);margin-bottom:5px;">${title}</h2>
-            <p style="font-size:1.3rem;color:var(--primary);font-weight:600;margin-bottom:15px;">${subtitle}</p>
-            <p style="color:var(--gray-dark);margin-bottom:30px;line-height:1.6;">${message}</p>
+            <div class="modal-icon" style="width:72px;height:72px;margin:0 auto 15px;border-radius:var(--radius);background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;"><i class="fas fa-check" aria-hidden="true"></i></div>
+            <h2 id="confirmationTitle" style="font-family:var(--font-display);font-size:2.5rem;color:var(--dark);margin-bottom:5px;">${escapeHTML(title)}</h2>
+            <p style="font-size:1.3rem;color:var(--primary);font-weight:600;margin-bottom:15px;">${escapeHTML(subtitle)}</p>
+            <p style="color:var(--gray-dark);margin-bottom:30px;line-height:1.6;">${escapeHTML(message)}</p>
             <button onclick="this.closest('.confirmation-modal').remove()" class="btn btn-primary" style="width:100%;justify-content:center;">
                 <i class="fas fa-check"></i> Super, merci !
             </button>
@@ -812,6 +918,7 @@ function showConfirmation(title, subtitle, message) {
 
 // ===== CONFETTI HELPER =====
 function triggerConfetti() {
+    if (prefersReducedMotion.matches) return;
     const colors = ['#e63946', '#ffb703', '#4caf50', '#2196f3', '#9c27b0', '#ff9800'];
     const container = document.createElement('div');
     container.className = 'confetti-container';

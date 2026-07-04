@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Heros Cafe - Le Fast-Food des Héros">
     <meta name="twitter:description" content="Burgers XXL, frites croustillantes et milkshakes onctueux.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
     <title>Heros Cafe - Le Fast-Food des Héros</title>
     <script type="application/ld+json">
     {
@@ -60,7 +60,7 @@
 
     <!-- NAVBAR -->
     <nav id="navbar">
-        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <a href="index.html" class="logo"><i class="fas fa-bolt logo-mark" aria-hidden="true"></i> HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="active">Accueil</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -69,10 +69,10 @@
             <li><a href="#reservation">Réservation</a></li>
             <li><a href="Menu.html">Carte complète</a></li>
             <li><a href="order.html" class="nav-btn">Commander</a></li>
-            <li class="theme-toggle-desktop"><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+            <li class="theme-toggle-desktop"><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre" aria-label="Activer le mode sombre"><i class="fas fa-moon" aria-hidden="true"></i></button></li>
             <li class="theme-toggle-mobile"><a href="#" onclick="event.preventDefault();toggleTheme()"><i class="fas fa-moon"></i> Mode sombre</a></li>
         </ul>
-        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="navLinks" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
     </nav>
 
     <!-- NAV OVERLAY -->
@@ -82,8 +82,8 @@
     <section class="hero" id="home">
         <div class="hero-particles"></div>
         <div class="hero-content">
-            <div class="hero-badge">🔥 NOUVEAU : Le Burger Titan</div>
-            <h1>DEViens LE HÉROS <span class="word-rotate-wrapper">DE TON APPÉTIT<span class="word active">🔥 DE TON APPÉTIT</span><span class="word">🍔 DE LA FAIM</span><span class="word">🥤 DE LA SOIF</span></span></h1>
+            <div class="hero-badge"><i class="fas fa-fire" aria-hidden="true"></i> NOUVEAU : Le Burger Titan</div>
+            <h1>DEVIENS LE HÉROS <span class="sr-only">DE TON APPÉTIT</span><span class="word-rotate-wrapper" aria-hidden="true"><span class="word active">DE TON APPÉTIT</span><span class="word">DE LA FAIM</span><span class="word">DE LA SOIF</span></span></h1>
             <p>Burgers XXL, frites croustillantes et milkshakes onctueux. Chez Heros Cafe, chaque bouchée est une victoire. Prêt pour l'aventure ?</p>
             <div class="hero-buttons">
                 <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Voir le Menu</a>
@@ -149,10 +149,10 @@
             <input type="text" id="menuSearch" placeholder="Rechercher dans le menu..." autocomplete="off">
         </div>
         <div class="menu-tabs fade-in">
-            <button class="tab-btn active" data-category="burgers">🍔 Burgers</button>
-            <button class="tab-btn" data-category="sides">🍟 Accompagnements</button>
-            <button class="tab-btn" data-category="desserts">🍰 Desserts</button>
-            <button class="tab-btn" data-category="drinks">🥤 Boissons</button>
+            <button class="tab-btn active" data-category="burgers"><i class="fas fa-burger" aria-hidden="true"></i> Burgers</button>
+            <button class="tab-btn" data-category="sides"><i class="fas fa-bowl-food" aria-hidden="true"></i> Accompagnements</button>
+            <button class="tab-btn" data-category="desserts"><i class="fas fa-cookie-bite" aria-hidden="true"></i> Desserts</button>
+            <button class="tab-btn" data-category="drinks"><i class="fas fa-mug-saucer" aria-hidden="true"></i> Boissons</button>
         </div>
         <div class="menu-grid" id="menuGrid"></div>
         <div style="text-align:center;margin-top:40px;" class="fade-in">
@@ -164,7 +164,7 @@
     <section class="combo" id="combo">
         <div class="combo-container">
             <div class="combo-img fade-in-left">
-                <div class="combo-tag">🔥 COMBO DU JOUR</div>
+                <div class="combo-tag"><i class="fas fa-fire" aria-hidden="true"></i> COMBO DU JOUR</div>
                 <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&q=75&fm=webp" alt="Pack Titan" loading="eager" fetchpriority="high">
             </div>
             <div class="combo-content fade-in-right">
@@ -201,7 +201,7 @@
             <p class="section-desc">Découvrez l'envers du décor et nos plats signature en images.</p>
         </div>
         <div class="gallery-carousel fade-in">
-            <button class="carousel-btn carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn carousel-prev" type="button" aria-label="Image précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
             <div class="carousel-track">
                 <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=75&fm=webp" alt="Burger" loading="lazy"></div>
                 <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1586816001966-79b736744398?w=800&q=75&fm=webp" alt="Frites" loading="lazy"></div>
@@ -210,7 +210,7 @@
                 <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=75&fm=webp" alt="Dessert" loading="lazy"></div>
                 <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=75&fm=webp" alt="Restaurant" loading="lazy"></div>
             </div>
-            <button class="carousel-btn carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-btn carousel-next" type="button" aria-label="Image suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
         </div>
     </section>
 
@@ -298,7 +298,7 @@
                         <textarea rows="3" placeholder="Allergies, occasion spéciale..."></textarea>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn" data-confetti>
+                <button type="submit" class="submit-btn">
                     <span class="btn-text"><i class="fas fa-calendar-check"></i> Confirmer la réservation</span>
                     <div class="spinner"></div>
                 </button>
@@ -320,7 +320,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>🦸 HEROS CAFE</h4>
+                <h4><i class="fas fa-bolt" aria-hidden="true"></i> HEROS CAFE</h4>
                 <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -357,7 +357,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html" style="display:inline;color:#555;">Mentions légales</a> | <a href="cgu.html" style="display:inline;color:#555;">CGU</a></p>
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec soin à Paris | <a href="mentions-legales.html" style="display:inline;color:#555;">Mentions légales</a> | <a href="cgu.html" style="display:inline;color:#555;">CGU</a></p>
         </div>
     </footer>
 
@@ -376,8 +376,8 @@
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
-                <h3>🛒 Ton Panier</h3>
-                <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+                <h3><i class="fas fa-shopping-basket" aria-hidden="true"></i> Ton Panier</h3>
+                <button class="close-cart" onclick="toggleCart()" aria-label="Fermer le panier"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div id="cartItems"></div>
             <div class="cart-total" id="cartTotal" style="display:none;">
@@ -387,7 +387,7 @@
             <button class="submit-btn" id="checkoutBtn" style="display:none;" onclick="checkout()">
                 <i class="fas fa-credit-card"></i> Commander
             </button>
-            <button class="submit-btn" style="margin-top:10px;background:var(--dark);" onclick="window.location.href='order.html'">
+            <button class="submit-btn submit-btn-secondary" style="margin-top:10px;" onclick="window.location.href='order.html'">
                 <i class="fas fa-arrow-right"></i> Passer la commande complète
             </button>
         </div>
@@ -395,10 +395,10 @@
 
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();prevImage()"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer la galerie">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();prevImage()" aria-label="Image précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
         <img src="" alt="Gallery" onclick="event.stopPropagation()">
-        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();nextImage()"><i class="fas fa-chevron-right"></i></button>
+        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();nextImage()" aria-label="Image suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
     </div>
 
     <script src="script.js" defer></script>

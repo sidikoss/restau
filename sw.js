@@ -1,4 +1,4 @@
-const CACHE = 'heros-v1';
+const CACHE = 'heros-v2';
 const STATIC_FILES = [
   '/',
   '/index.html',
@@ -7,6 +7,8 @@ const STATIC_FILES = [
   '/reserve.html',
   '/about.html',
   '/contact.html',
+  '/blog.html',
+  '/recrutement.html',
   '/404.html',
   '/mentions-legales.html',
   '/cgu.html',

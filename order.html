@@ -9,7 +9,7 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=75&fm=webp">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
     <title>Commander | Heros Cafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
     <div id="toastContainer"></div>
 
     <nav id="navbar">
-        <a href="index.html" class="logo">🦸 HEROS <span>CAFE</span></a>
+        <a href="index.html" class="logo"><i class="fas fa-bolt logo-mark" aria-hidden="true"></i> HEROS <span>CAFE</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="Menu.html">Menu</a></li>
@@ -39,10 +39,10 @@
             <li><a href="index.html#avis">Avis</a></li>
             <li><a href="reserve.html">Réservation</a></li>
             <li><a href="order.html" class="nav-btn active">Commander</a></li>
-            <li class="theme-toggle-desktop"><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre"><i class="fas fa-moon"></i></button></li>
+            <li class="theme-toggle-desktop"><button class="theme-toggle" onclick="toggleTheme()" title="Mode sombre" aria-label="Activer le mode sombre"><i class="fas fa-moon" aria-hidden="true"></i></button></li>
             <li class="theme-toggle-mobile"><a href="#" onclick="event.preventDefault();toggleTheme()"><i class="fas fa-moon"></i> Mode sombre</a></li>
         </ul>
-        <div class="burger" id="burger"><i class="fas fa-bars"></i></div>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="navLinks" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
     </nav>
 
     <div class="nav-overlay"></div>
@@ -57,7 +57,7 @@
     <section class="order-page" style="padding:4rem 5%;">
         <div class="order-container">
             <div class="order-summary-card fade-in">
-                <h2>🛒 Ton <span>Panier</span></h2>
+                <h2><i class="fas fa-shopping-basket" aria-hidden="true"></i> Ton <span>Panier</span></h2>
                 <div id="orderItems"></div>
             </div>
 
@@ -67,7 +67,7 @@
             </div>
 
             <div class="order-tracking-card order-form-card fade-in" style="display:none;" id="trackingCard">
-                <h2>📦 Suivi de <span>commande</span></h2>
+                <h2><i class="fas fa-route" aria-hidden="true"></i> Suivi de <span>commande</span></h2>
                 <div class="order-tracking">
                     <div class="tracking-steps">
                         <div class="step"><div class="step-icon"><i class="fas fa-clipboard"></i></div><span class="step-label">Commande reçue</span></div>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="order-form-card fade-in">
-                <h2>🚚 Infos de <span>Livraison</span></h2>
+                <h2><i class="fas fa-truck" aria-hidden="true"></i> Infos de <span>Livraison</span></h2>
                 <form onsubmit="handleOrder(event)">
                     <div class="form-group">
                         <label>Nom complet</label>
@@ -100,7 +100,7 @@
                         <label>Adresse de livraison</label>
                         <textarea id="orderAddress" rows="3" required placeholder="12 Rue de la Faim, 75010 Paris"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn" data-confetti>
+                    <button type="submit" class="submit-btn">
                         <span class="btn-text"><i class="fas fa-check-circle"></i> Confirmer la commande</span>
                         <div class="spinner"></div>
                     </button>
@@ -115,7 +115,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>🦸 HEROS CAFE</h4>
+                <h4><i class="fas fa-bolt" aria-hidden="true"></i> HEROS CAFE</h4>
                 <p>Le fast-food qui réveille le héros qui sommeille en toi. Depuis 2011.</p>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -150,7 +150,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec ❤️ et 🍔 | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
+            <p>&copy; 2026 Heros Cafe. Tous droits réservés. | Fait avec soin à Paris | <a href="mentions-legales.html">Mentions légales</a> | <a href="cgu.html">CGU</a></p>
         </div>
     </footer>
 
